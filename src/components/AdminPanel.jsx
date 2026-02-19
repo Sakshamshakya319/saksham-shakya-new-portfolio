@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 export default function AdminPanel() {
   const [email, setEmail] = useState('');
@@ -20,6 +22,28 @@ export default function AdminPanel() {
   const [blogContent, setBlogContent] = useState('');
   const [showPreview, setShowPreview] = useState(false);
   const [blogMessage, setBlogMessage] = useState('');
+  const quillModules = {
+    toolbar: [
+      [{ header: [1, 2, 3, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['blockquote', 'code-block'],
+      ['link'],
+      ['clean']
+    ]
+  };
+  const quillFormats = [
+    'header',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'list',
+    'bullet',
+    'blockquote',
+    'code-block',
+    'link'
+  ];
 
   const [blogs, setBlogs] = useState([]);
   const [blogsLoading, setBlogsLoading] = useState(false);
@@ -410,14 +434,16 @@ export default function AdminPanel() {
               <label className="fl" htmlFor="blogContent">
                 Article Content
               </label>
-              <textarea
-                id="blogContent"
-                className="fta"
-                placeholder="Write your full blog article here. Use blank lines to separate paragraphs."
-                value={blogContent}
-                onChange={e => setBlogContent(e.target.value)}
-                required
-              />
+              <div className="admin-quill">
+                <ReactQuill
+                  id="blogContent"
+                  theme="snow"
+                  value={blogContent}
+                  onChange={setBlogContent}
+                  modules={quillModules}
+                  formats={quillFormats}
+                />
+              </div>
             </div>
             {blogMessage && (
               <div className="admin-info">{blogMessage}</div>
@@ -467,12 +493,14 @@ export default function AdminPanel() {
                   </div>
                 )}
                 <div className="admin-preview-body">
-                  {(blogContent || blogMeta)
-                    .split(/\n{2,}/)
-                    .filter(Boolean)
-                    .map((p, idx) => (
-                      <p key={String(idx)}>{p}</p>
-                    ))}
+                  {blogContent ? (
+                    <div
+                      className="admin-preview-html"
+                      dangerouslySetInnerHTML={{ __html: blogContent }}
+                    />
+                  ) : (
+                    <p>{blogMeta || 'Start writing your article above.'}</p>
+                  )}
                 </div>
               </div>
             )}
