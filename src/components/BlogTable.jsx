@@ -8,6 +8,11 @@ export default function BlogTable() {
   const [error, setError] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
   const [query, setQuery] = useState('');
+  const [activeBlog, setActiveBlog] = useState(null);
+  const [detailLoading, setDetailLoading] = useState(false);
+  const [detailError, setDetailError] = useState('');
+  const [likeBusy, setLikeBusy] = useState(false);
+  const [shareMessage, setShareMessage] = useState('');
 
   useEffect(() => {
     let cancelled = false;
@@ -37,6 +42,107 @@ export default function BlogTable() {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (!blogs.length) {
+      return;
+    }
+    const slug = window.__initialBlogSlug;
+    if (slug) {
+      const match = blogs.find(b => b.slug === slug);
+      if (match) {
+        openBlog(match);
+      }
+      window.__initialBlogSlug = '';
+    }
+  }, [blogs]);
+
+  async function openBlog(b) {
+    setDetailError('');
+    setDetailLoading(true);
+    try {
+      const res = await fetch(`/api/blogs?id=${encodeURIComponent(b._id)}`);
+      if (!res.ok) {
+        throw new Error('Failed to load blog');
+      }
+      const data = await res.json();
+      const blog = data && data.blog ? data.blog : b;
+      setActiveBlog(blog);
+    } catch (e) {
+      setDetailError('Unable to open this article right now.');
+    } finally {
+      setDetailLoading(false);
+    }
+  }
+
+  function closeBlog() {
+    setActiveBlog(null);
+    setDetailError('');
+  }
+
+  async function handleLike() {
+    if (!activeBlog || likeBusy) {
+      return;
+    }
+    setLikeBusy(true);
+    try {
+      const res = await fetch('/api/blogs', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: activeBlog._id })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) {
+        return;
+      }
+      const nextLikes = data.likes || 0;
+      setActiveBlog(prev =>
+        prev ? { ...prev, likes: nextLikes } : prev
+      );
+      setBlogs(prev =>
+        prev.map(b =>
+          b._id === activeBlog._id ? { ...b, likes: nextLikes } : b
+        )
+      );
+    } catch (e) {
+    } finally {
+      setLikeBusy(false);
+    }
+  }
+
+  async function handleShare() {
+    if (!activeBlog) {
+      return;
+    }
+    const slug = activeBlog.slug || activeBlog._id;
+    const url = `${window.location.origin}/blog/${slug}`;
+    const title = activeBlog.title || 'Blog post';
+    const text = activeBlog.meta || title;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title, text, url });
+        setShareMessage('Article shared.');
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(url);
+        setShareMessage('Link copied to clipboard.');
+      } else {
+        setShareMessage(url);
+      }
+    } catch (e) {
+      setShareMessage('');
+    }
+    if (shareMessage) {
+      return;
+    }
+    if (!navigator.share && !navigator.clipboard) {
+      return;
+    }
+    setTimeout(() => {
+      setShareMessage('');
+    }, 3500);
+  }
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -120,6 +226,7 @@ export default function BlogTable() {
             <div
               key={b._id || b.slug || b.title || index}
               className="brow"
+              onClick={() => openBlog(b)}
             >
               <div className="br-n">
                 {String(index + 1).padStart(2, '0')}
@@ -148,6 +255,83 @@ export default function BlogTable() {
           </div>
         )}
       </div>
+      {(detailLoading || activeBlog || detailError) && (
+        <div className="blog-reader">
+          {detailLoading && !activeBlog && (
+            <div className="blog-reader-info">
+              Loading article…
+            </div>
+          )}
+          {detailError && !detailLoading && !activeBlog && (
+            <div className="blog-reader-error">
+              {detailError}
+            </div>
+          )}
+          {activeBlog && (
+            <>
+              <div className="blog-reader-head">
+                <div className="blog-reader-eyebrow">
+                  {activeBlog.category} · {activeBlog.readTime}
+                </div>
+                <h3 className="blog-reader-title">
+                  {activeBlog.title}
+                </h3>
+                <div className="blog-reader-meta">
+                  <span>{activeBlog.date}</span>
+                  <span>
+                    {activeBlog.likes || 0} likes
+                  </span>
+                </div>
+              </div>
+              {activeBlog.imageUrl && (
+                <div className="blog-reader-image">
+                  <img
+                    src={activeBlog.imageUrl}
+                    alt={activeBlog.title}
+                  />
+                </div>
+              )}
+              <div className="blog-reader-body">
+                {(activeBlog.body || activeBlog.meta || '')
+                  .split(/\n{2,}/)
+                  .filter(Boolean)
+                  .map((p, idx) => (
+                    <p key={String(idx)}>{p}</p>
+                  ))}
+              </div>
+              <div className="blog-reader-actions">
+                <button
+                  type="button"
+                  className="blog-btn like"
+                  onClick={handleLike}
+                  disabled={likeBusy}
+                >
+                  {likeBusy ? 'Liking…' : '♥ Like'}
+                </button>
+                <button
+                  type="button"
+                  className="blog-btn share"
+                  onClick={handleShare}
+                >
+                  ↗ Share
+                </button>
+                <button
+                  type="button"
+                  className="blog-btn ghost"
+                  onClick={closeBlog}
+                >
+                  Close
+                </button>
+                {shareMessage && (
+                  <div className="blog-share-hint">
+                    {shareMessage}
+                  </div>
+                )}
+              </div>
+            </>
+          )}
+        </div>
+      )}
     </>
   );
 }

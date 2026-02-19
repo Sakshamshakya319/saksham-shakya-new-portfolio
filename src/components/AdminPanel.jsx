@@ -16,6 +16,9 @@ export default function AdminPanel() {
   const [blogReadTime, setBlogReadTime] = useState('5 min');
   const [blogDate, setBlogDate] = useState('');
   const [blogKeywords, setBlogKeywords] = useState('');
+  const [blogImageUrl, setBlogImageUrl] = useState('');
+  const [blogContent, setBlogContent] = useState('');
+  const [showPreview, setShowPreview] = useState(false);
   const [blogMessage, setBlogMessage] = useState('');
 
   const [blogs, setBlogs] = useState([]);
@@ -140,7 +143,9 @@ export default function AdminPanel() {
           category: blogCategory,
           readTime: blogReadTime,
           date: blogDate,
-          keywords: blogKeywords
+          keywords: blogKeywords,
+          imageUrl: blogImageUrl,
+          content: blogContent
         })
       });
       const data = await res.json();
@@ -152,6 +157,9 @@ export default function AdminPanel() {
       setBlogTitle('');
       setBlogMeta('');
       setBlogKeywords('');
+       setBlogImageUrl('');
+       setBlogContent('');
+       setShowPreview(false);
       if (tab === 'blogs') {
         loadBlogs();
       }
@@ -327,6 +335,19 @@ export default function AdminPanel() {
                 required
               />
             </div>
+            <div className="fg">
+              <label className="fl" htmlFor="blogImageUrl">
+                Cover Image URL (from imgbb)
+              </label>
+              <input
+                id="blogImageUrl"
+                className="fi"
+                type="url"
+                placeholder="https://i.ibb.co/your-image-link"
+                value={blogImageUrl}
+                onChange={e => setBlogImageUrl(e.target.value)}
+              />
+            </div>
             <div className="fr">
               <div className="fg">
                 <label className="fl" htmlFor="blogCategory">
@@ -385,6 +406,19 @@ export default function AdminPanel() {
                 />
               </div>
             </div>
+            <div className="fg">
+              <label className="fl" htmlFor="blogContent">
+                Article Content
+              </label>
+              <textarea
+                id="blogContent"
+                className="fta"
+                placeholder="Write your full blog article here. Use blank lines to separate paragraphs."
+                value={blogContent}
+                onChange={e => setBlogContent(e.target.value)}
+                required
+              />
+            </div>
             {blogMessage && (
               <div className="admin-info">{blogMessage}</div>
             )}
@@ -399,12 +433,49 @@ export default function AdminPanel() {
               <button
                 type="button"
                 className="btn-g"
+                onClick={() => setShowPreview(v => !v)}
+                disabled={busy}
+              >
+                {showPreview ? 'Hide Preview' : 'Preview Draft'}
+              </button>
+              <button
+                type="button"
+                className="btn-g"
                 onClick={handleSeed}
                 disabled={busy}
               >
                 Seed Sample Blogs
               </button>
             </div>
+            {showPreview && (
+              <div className="admin-preview">
+                <div className="admin-preview-head">
+                  <div className="admin-preview-tag">
+                    {blogCategory || 'Category'} · {blogReadTime || 'Read time'}
+                  </div>
+                  <h3 className="admin-preview-title">
+                    {blogTitle || 'Blog title'}
+                  </h3>
+                  <div className="admin-preview-meta">
+                    <span>{blogDate || 'Date'}</span>
+                    <span>{blogKeywords || 'Keywords'}</span>
+                  </div>
+                </div>
+                {blogImageUrl && (
+                  <div className="admin-preview-image">
+                    <img src={blogImageUrl} alt={blogTitle} />
+                  </div>
+                )}
+                <div className="admin-preview-body">
+                  {(blogContent || blogMeta)
+                    .split(/\n{2,}/)
+                    .filter(Boolean)
+                    .map((p, idx) => (
+                      <p key={String(idx)}>{p}</p>
+                    ))}
+                </div>
+              </div>
+            )}
             {recentContacts.length > 0 && (
               <div className="admin-side">
                 <div className="admin-side-title">

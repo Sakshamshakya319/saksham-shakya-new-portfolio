@@ -357,11 +357,20 @@ function initPortfolioEffects() {
   toggleTheme();
 
   const path = window.location.pathname.replace(/\/+$/, '');
+  let initialPage = 'home';
+  let initialBlogSlug = '';
   if (path === '/admin') {
-    goPage('admin');
-  } else {
-    goPage('home');
+    initialPage = 'admin';
+  } else if (path === '/blogs' || path === '/blog') {
+    initialPage = 'blogs';
+  } else if (path.startsWith('/blog/')) {
+    initialPage = 'blogs';
+    initialBlogSlug = path.slice('/blog/'.length);
   }
+  if (initialBlogSlug) {
+    window.__initialBlogSlug = initialBlogSlug;
+  }
+  goPage(initialPage);
 
   function triggerHeroAnime() {
     anime

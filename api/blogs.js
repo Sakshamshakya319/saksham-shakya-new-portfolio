@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const { verify } = require('jsonwebtoken');
 
 const uri = process.env.MONGODB_URI;
@@ -60,6 +60,17 @@ function readBody(req) {
   });
 }
 
+function createSlug(title) {
+  const base = String(title || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  if (!base) {
+    return String(Date.now());
+  }
+  return base;
+}
+
 module.exports = async function handler(req, res) {
   if (req.method === 'GET') {
     try {
@@ -67,6 +78,45 @@ module.exports = async function handler(req, res) {
       const dbClient = client;
       const db = dbClient.db('portfolio');
       const col = db.collection('blogs');
+
+      const url = new URL(req.url || '', 'http://localhost');
+      const id = url.searchParams.get('id');
+      const slug = url.searchParams.get('slug');
+
+      if (id || slug) {
+        const query = id
+          ? { _id: new ObjectId(id) }
+          : { slug };
+        const doc = await col.findOne(query);
+        if (!doc) {
+          res.statusCode = 404;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ error: 'Blog not found' }));
+          return;
+        }
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.end(
+          JSON.stringify({
+            blog: {
+              _id: String(doc._id),
+              slug: doc.slug || '',
+              title: doc.title || '',
+              meta: doc.meta || '',
+              category: doc.category || 'General',
+              readTime: doc.readTime || '5 min',
+              date: doc.date || '2025',
+              keywords: Array.isArray(doc.keywords)
+                ? doc.keywords.join(', ')
+                : '',
+              imageUrl: doc.imageUrl || '',
+              likes: doc.likes || 0,
+              body: doc.body || ''
+            }
+          })
+        );
+        return;
+      }
 
       const blogs = await col
         .find({})
@@ -80,12 +130,17 @@ module.exports = async function handler(req, res) {
         JSON.stringify({
           blogs: blogs.map(b => ({
             _id: String(b._id),
+            slug: b.slug || '',
             title: b.title || '',
             meta: b.meta || '',
             category: b.category || 'General',
             readTime: b.readTime || '5 min',
             date: b.date || '2025',
-            keywords: Array.isArray(b.keywords) ? b.keywords.join(', ') : ''
+            keywords: Array.isArray(b.keywords)
+              ? b.keywords.join(', ')
+              : '',
+            imageUrl: b.imageUrl || '',
+            likes: b.likes || 0
           }))
         })
       );
@@ -114,7 +169,9 @@ module.exports = async function handler(req, res) {
         category,
         readTime,
         date,
-        keywords
+        keywords,
+        content,
+        imageUrl
       } = body || {};
 
       if (!title || !meta) {
@@ -129,6 +186,17 @@ module.exports = async function handler(req, res) {
       const db = dbClient.db('portfolio');
       const col = db.collection('blogs');
 
+      const baseSlug = createSlug(title);
+      let slug = baseSlug;
+      let suffix = 1;
+      while (await col.findOne({ slug })) {
+        slug = `${baseSlug}-${suffix}`;
+        suffix += 1;
+        if (suffix > 50) {
+          break;
+        }
+      }
+
       const doc = {
         title,
         meta,
@@ -140,6 +208,10 @@ module.exports = async function handler(req, res) {
           : typeof keywords === 'string' && keywords.trim()
           ? keywords.split(',').map(k => k.trim())
           : [],
+        imageUrl: imageUrl || '',
+        body: content || '',
+        likes: 0,
+        slug,
         createdAt: new Date(),
         createdBy: admin.sub
       };
@@ -153,6 +225,55 @@ module.exports = async function handler(req, res) {
       res.statusCode = 500;
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify({ error: 'Failed to create blog' }));
+    }
+    return;
+  }
+
+  if (req.method === 'PATCH') {
+    try {
+      const body = await readBody(req);
+      const { id, slug } = body || {};
+      if (!id && !slug) {
+        res.statusCode = 400;
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({ error: 'Missing blog identifier' }));
+        return;
+      }
+
+      await getClient();
+      const dbClient = client;
+      const db = dbClient.db('portfolio');
+      const col = db.collection('blogs');
+
+      const filter = id
+        ? { _id: new ObjectId(id) }
+        : { slug };
+
+      const result = await col.findOneAndUpdate(
+        filter,
+        { $inc: { likes: 1 } },
+        { returnDocument: 'after' }
+      );
+
+      if (!result.value) {
+        res.statusCode = 404;
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({ error: 'Blog not found' }));
+        return;
+      }
+
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(
+        JSON.stringify({
+          ok: true,
+          likes: result.value.likes || 0
+        })
+      );
+    } catch (e) {
+      res.statusCode = 500;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ error: 'Failed to update likes' }));
     }
     return;
   }
