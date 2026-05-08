@@ -124,7 +124,7 @@ const App = () => {
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-4xl sm:text-6xl lg:text-9xl font-sora font-extrabold leading-[1.1] sm:leading-[0.9] mb-8 tracking-tighter"
+                    className="text-4xl sm:text-7xl lg:text-9xl font-sora font-extrabold leading-[1.1] mb-6 sm:mb-8 tracking-tighter"
                   >
                     SAKSHAM <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-primary via-cyan-accent to-indigo-primary bg-[length:200%_auto] animate-gradient-flow">
@@ -136,7 +136,7 @@ const App = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="text-white/40 text-base sm:text-lg lg:text-xl max-w-xl mb-12 leading-relaxed font-light"
+                    className="text-white/40 text-sm sm:text-lg lg:text-xl max-w-xl mb-10 sm:mb-12 leading-relaxed font-light px-1"
                   >
                     Crafting scalable full-stack applications and immersive digital experiences. Currently pursuing MCA at LPU with a focus on engineering impact.
                   </motion.p>
@@ -145,14 +145,15 @@ const App = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="flex flex-wrap gap-6"
                   >
-                    <GlassButton primary onClick={() => setActivePage('projects')}>
-                      Explore Archive
-                    </GlassButton>
-                    <GlassButton onClick={() => setActivePage('about')}>
-                      Personal Story
-                    </GlassButton>
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                      <GlassButton primary onClick={() => setActivePage('projects')} className="w-full sm:w-auto text-center">
+                        Explore Works
+                      </GlassButton>
+                      <GlassButton onClick={() => setActivePage('contact')} className="w-full sm:w-auto text-center">
+                        Architect Proposal
+                      </GlassButton>
+                    </div>
                   </motion.div>
                 </div>
 
@@ -203,10 +204,10 @@ const App = () => {
               </section>
 
               {/* Achievements Section */}
-              <section className="py-32 border-t border-white/5">
-                <div className="mb-20">
-                  <h2 className="text-3xl sm:text-6xl font-sora font-black tracking-tighter mb-4 uppercase">Key <span className="text-cyan-accent">Achievements</span></h2>
-                  <div className="h-1 w-24 bg-gradient-to-r from-indigo-primary to-cyan-accent rounded-full" />
+              <section className="py-20 sm:py-32 border-t border-white/5">
+                <div className="mb-12 sm:mb-20 px-4 sm:px-0">
+                  <h2 className="text-2xl sm:text-6xl font-sora font-black tracking-tighter mb-4 uppercase">Key <span className="text-cyan-accent">Achievements</span></h2>
+                  <div className="h-1 w-20 sm:w-24 bg-gradient-to-r from-indigo-primary to-cyan-accent rounded-full" />
                 </div>
                 <div className="grid md:grid-cols-3 gap-8">
                   {ACHIEVEMENTS.map((item, i) => (
@@ -220,11 +221,11 @@ const App = () => {
               </section>
 
               {/* Projects Grid Section (Added to Home) */}
-              <section className="py-32 border-t border-white/5">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+              <section className="py-20 sm:py-32 border-t border-white/5">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 sm:mb-20 gap-8 px-4 sm:px-0">
                   <div>
-                    <h2 className="text-3xl sm:text-6xl font-sora font-black tracking-tighter mb-4 uppercase">Selected <span className="text-indigo-primary">Works</span></h2>
-                    <div className="h-1 w-24 bg-gradient-to-r from-cyan-accent to-indigo-primary rounded-full" />
+                    <h2 className="text-2xl sm:text-6xl font-sora font-black tracking-tighter mb-4 uppercase">Selected <span className="text-indigo-primary">Works</span></h2>
+                    <div className="h-1 w-20 sm:w-24 bg-gradient-to-r from-cyan-accent to-indigo-primary rounded-full" />
                   </div>
                   <button
                     onClick={() => setActivePage('projects')}
@@ -257,12 +258,12 @@ const App = () => {
               </section>
 
               {/* Skills & Certifications Section */}
-              <section className="py-32 border-t border-white/5">
-                <div className="grid lg:grid-cols-2 gap-20">
+              <section className="py-20 sm:py-32 border-t border-white/5">
+                <div className="grid lg:grid-cols-2 gap-12 sm:gap-20">
                   {/* Skills Cloud */}
-                  <div>
+                  <div className="px-4 sm:px-0">
                     <div className="mb-12">
-                      <h2 className="text-4xl font-sora font-black tracking-tighter mb-4 uppercase">Technical <span className="text-cyan-accent">Stack</span></h2>
+                      <h2 className="text-2xl sm:text-4xl font-sora font-black tracking-tighter mb-4 uppercase">Technical <span className="text-cyan-accent">Stack</span></h2>
                       <div className="h-1 w-16 bg-cyan-accent rounded-full" />
                     </div>
                     <div className="flex flex-wrap gap-3">
@@ -290,9 +291,9 @@ const App = () => {
                   </div>
 
                   {/* Certifications */}
-                  <div>
+                  <div className="px-4 sm:px-0">
                     <div className="mb-12">
-                      <h2 className="text-4xl font-sora font-black tracking-tighter mb-4 uppercase">Certifications</h2>
+                      <h2 className="text-2xl sm:text-4xl font-sora font-black tracking-tighter mb-4 uppercase">Certifications</h2>
                       <div className="h-1 w-16 bg-indigo-primary rounded-full" />
                     </div>
                     <div className="space-y-6">
@@ -330,18 +331,18 @@ const App = () => {
               className="max-w-7xl mx-auto py-20"
             >
               {/* Projects Hero */}
-              <div className="text-center mb-32">
+              <div className="text-center mb-20 sm:mb-40">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="inline-block px-4 py-1 glass-surface rounded-full text-[10px] font-black tracking-[0.4em] text-cyan-accent uppercase mb-8"
+                  whileInView={{ opacity: 1, y: 0 }}
+                  className="inline-block px-6 py-2 glass-surface rounded-full border border-white/10 text-[10px] font-black tracking-[0.3em] uppercase text-cyan-accent mb-8"
                 >
                   Project Archive
                 </motion.div>
-                <h2 className="text-4xl sm:text-6xl lg:text-9xl font-sora font-black tracking-tighter mb-12 uppercase leading-[1.1] sm:leading-[0.8]">
+                <h2 className="text-3xl sm:text-6xl lg:text-9xl font-sora font-black tracking-tighter mb-8 sm:mb-12 uppercase leading-[1.1] sm:leading-[0.8]">
                   ENGINEERING <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-primary to-cyan-accent">IMPACT.</span>
                 </h2>
-                <p className="text-white/40 max-w-2xl mx-auto text-base sm:text-lg font-light leading-relaxed px-4">
+                <p className="text-white/40 max-w-2xl mx-auto text-sm sm:text-lg font-light leading-relaxed px-4">
                   A curated collection of production-grade applications, full-stack architectures, and experimental prototypes built with modern technologies.
                 </p>
               </div>
@@ -356,13 +357,13 @@ const App = () => {
 
                 <GlassCard className="overflow-hidden border-white/10">
                   <div className="grid lg:grid-cols-2">
-                    <div className="p-8 sm:p-12 lg:p-20 flex flex-col justify-center">
-                      <div className="flex items-center gap-3 mb-8">
+                    <div className="p-6 sm:p-12 lg:p-20 flex flex-col justify-center order-2 lg:order-1">
+                      <div className="flex items-center gap-3 mb-6 sm:mb-8">
                         <Terminal className="text-cyan-accent" size={18} />
                         <span className="text-[10px] font-bold tracking-widest text-white/60 uppercase">System Architecture</span>
                       </div>
-                      <h3 className="text-3xl sm:text-5xl font-sora font-black mb-8 leading-tight">LPU NSS <br />Management Portal</h3>
-                      <p className="text-white/50 text-base sm:text-lg leading-relaxed mb-12 font-light">
+                      <h3 className="text-2xl sm:text-5xl font-sora font-black mb-6 sm:mb-8 leading-tight">LPU NSS <br />Management Portal</h3>
+                      <p className="text-white/50 text-sm sm:text-lg leading-relaxed mb-8 sm:mb-12 font-light">
                         A robust full-stack solution engineered to streamline event coordination, volunteer tracking, and certificate automation for the National Service Scheme. Featuring QR-based attendance and Razorpay integration.
                       </p>
                       <div className="flex flex-wrap gap-3 mb-12">
@@ -379,27 +380,13 @@ const App = () => {
                         </GlassButton>
                       </div>
                     </div>
-                    <div className="bg-gradient-to-br from-indigo-primary/20 to-cyan-accent/20 relative min-h-[400px] flex items-center justify-center border-l border-white/5">
-                      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay opacity-30 grayscale" />
+                    <div className="relative min-h-[300px] sm:min-h-[500px] bg-gradient-to-br from-indigo-primary/20 to-cyan-accent/20 flex items-center justify-center p-8 sm:p-12 order-1 lg:order-2">
                       <motion.div
-                        animate={{ y: [0, -20, 0] }}
-                        transition={{ duration: 5, repeat: Infinity }}
-                        className="relative z-10 w-3/4 aspect-video glass-surface rounded-2xl shadow-2xl border border-white/10 overflow-hidden"
+                        whileHover={{ scale: 1.05, rotate: 2 }}
+                        className="w-full aspect-video bg-obsidian-void rounded-2xl border border-white/10 shadow-2xl overflow-hidden relative group"
                       >
-                        <div className="h-6 bg-white/5 flex items-center px-4 gap-2 border-b border-white/5">
-                          <div className="w-2 h-2 rounded-full bg-red-500/50" />
-                          <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
-                          <div className="w-2 h-2 rounded-full bg-green-500/50" />
-                        </div>
-                        <div className="p-8">
-                          <div className="h-4 w-1/2 bg-white/5 rounded mb-4" />
-                          <div className="h-32 w-full bg-white/5 rounded mb-4" />
-                          <div className="grid grid-cols-3 gap-4">
-                            <div className="h-20 bg-white/5 rounded" />
-                            <div className="h-20 bg-white/5 rounded" />
-                            <div className="h-20 bg-white/5 rounded" />
-                          </div>
-                        </div>
+                        <img src="/saksham.jpg" alt="Featured Project" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-obsidian-void to-transparent opacity-60" />
                       </motion.div>
                     </div>
                   </div>
@@ -481,39 +468,36 @@ const App = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="max-w-7xl mx-auto py-20"
+              className="max-w-7xl mx-auto py-12 sm:py-20 px-4 sm:px-6"
             >
               {/* Story Intro */}
-              <div className="grid lg:grid-cols-2 gap-20 items-center mb-40">
+              <div className="grid lg:grid-cols-2 gap-12 sm:gap-20 items-center mb-20 sm:mb-40">
                 <motion.div
-                  initial={{ opacity: 0, x: -30 }}
+                  initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <h2 className="text-4xl sm:text-6xl lg:text-8xl font-sora font-black tracking-tighter mb-12 uppercase leading-[1.1] sm:leading-[0.8]">
+                  <h2 className="text-3xl sm:text-6xl lg:text-8xl font-sora font-black tracking-tighter mb-8 sm:mb-12 uppercase leading-[1.1] sm:leading-[0.8]">
                     THE <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-primary to-cyan-accent">ARCHITECT'S</span> <br /> STORY
                   </h2>
-                  <div className="space-y-6 text-white/50 text-xl font-light leading-relaxed">
+                  <div className="space-y-4 sm:space-y-6 text-white/50 text-base sm:text-xl font-light leading-relaxed">
                     <p>
-                      I am <strong className="text-white font-bold">Saksham Shakya</strong>, a software engineer who believes that code is not just about solving problems, but about creating experiences that matter.
+                      Based in India, I am a software engineer focused on building digital products that balance technical complexity with intuitive simplicity.
                     </p>
                     <p>
-                      My journey is fueled by a dual obsession: the mathematical precision of high-performance backend systems and the refractive beauty of immersive frontend interfaces.
-                    </p>
-                    <p>
-                      Beyond the screen, my work as an NSS Achiever has taught me that technology is most powerful when it serves a community. From leading drug awareness campaigns to visiting the Parliament, my focus has always been on impact.
+                      My journey began with a curiosity for how systems work, which evolved into a career centered on full-stack engineering and cloud architecture.
                     </p>
                   </div>
                 </motion.div>
 
-                <div className="relative">
-                  <div className="absolute -inset-20 bg-indigo-primary/10 blur-[120px] rounded-full animate-pulse" />
-                  <GlassCard className="p-8 aspect-square flex items-center justify-center relative z-10">
-                    <div className="text-center">
-                      <div className="text-6xl sm:text-8xl lg:text-[120px] font-sora font-black text-white/5 leading-none mb-4">2025</div>
-                      <div className="text-[10px] font-bold tracking-[0.5em] text-cyan-accent uppercase">Current Milestone</div>
-                      <div className="mt-8 px-6 py-3 glass-surface rounded-2xl border border-white/5">
-                        <span className="text-white font-bold">MCA @ Lovely Professional University</span>
+                <div className="relative group">
+                  <div className="absolute -inset-10 sm:-inset-20 bg-indigo-primary/10 blur-[80px] sm:blur-[120px] rounded-full animate-pulse" />
+                  <GlassCard className="p-8 sm:p-12 aspect-square flex flex-col items-center justify-center relative z-10 overflow-hidden">
+                    <div className="text-center w-full">
+                      <div className="text-6xl sm:text-8xl lg:text-[120px] font-sora font-black text-white/5 leading-none mb-2 sm:mb-4 tracking-tighter">2025</div>
+                      <div className="text-[9px] sm:text-[10px] font-black tracking-[0.4em] sm:tracking-[0.5em] text-cyan-accent uppercase mb-6 sm:mb-8">Current Milestone</div>
+                      <div className="px-4 sm:px-6 py-3 sm:py-4 glass-surface rounded-xl sm:rounded-2xl border border-white/5 mx-auto w-full max-w-[280px] sm:max-w-none">
+                        <span className="text-white text-[11px] sm:text-base font-bold leading-relaxed">MCA @ Lovely Professional University</span>
                       </div>
                     </div>
                   </GlassCard>
@@ -521,7 +505,7 @@ const App = () => {
               </div>
 
               {/* Core Philosophy Section */}
-              <div className="mb-40">
+              <div className="mb-20 sm:mb-40">
                 <div className="text-center mb-20">
                   <h3 className="text-xs font-black tracking-[0.4em] text-white/20 uppercase mb-4">Core Philosophy</h3>
                   <div className="h-[1px] w-12 bg-white/10 mx-auto" />
@@ -544,7 +528,7 @@ const App = () => {
                       icon: Heart
                     }
                   ].map((item, i) => (
-                    <GlassCard key={i} delay={i * 0.1} className="p-10">
+                    <GlassCard key={i} delay={i * 0.1} className="p-8 sm:p-10">
                       <item.icon className="text-cyan-accent mb-8" size={32} />
                       <h4 className="text-xl font-sora font-bold mb-4">{item.title}</h4>
                       <p className="text-white/40 text-sm leading-relaxed">{item.desc}</p>
@@ -562,7 +546,7 @@ const App = () => {
                   <p className="text-white/30 text-[10px] sm:text-sm tracking-widest uppercase font-bold">From fundamentals to mastery</p>
                 </div>
 
-                <div className="space-y-32">
+                <div className="space-y-20 sm:space-y-32">
                   {[
                     {
                       year: "2025 — 2027",
@@ -601,45 +585,45 @@ const App = () => {
                       side: 'right'
                     }
                   ].map((item, i) => (
-                    <div key={i} className={`flex flex-col md:flex-row items-center gap-12 md:gap-0 ${item.side === 'right' ? 'md:flex-row-reverse' : ''}`}>
-                      <div className="flex-1 w-full md:px-20 text-center md:text-left">
+                    <div key={i} className={`flex flex-col md:flex-row items-center gap-12 sm:gap-20 ${i % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
+                      <div className={`w-full md:w-1/2 ${i % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
                         <motion.div
-                          initial={{ opacity: 0, x: item.side === 'left' ? -20 : 20 }}
+                          initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
                           whileInView={{ opacity: 1, x: 0 }}
                         >
                           <div className="text-[10px] font-black text-cyan-accent tracking-[0.4em] uppercase mb-4">{item.year}</div>
-                          <h4 className="text-2xl sm:text-3xl font-sora font-black mb-4 leading-tight">{item.title}</h4>
-                          <div className="text-sm sm:text-base text-white/60 font-bold mb-4">{item.inst}</div>
-                          <p className="text-white/30 text-sm leading-relaxed mb-6">{item.details}</p>
-                          <div className="inline-block px-4 py-2 glass-surface rounded-lg text-xs font-bold text-white/60 border border-white/5">
+                          <h4 className="text-xl sm:text-3xl font-sora font-black mb-4 leading-tight">{item.title}</h4>
+                          <div className="text-xs sm:text-base text-white/60 font-bold mb-4">{item.inst}</div>
+                          <p className="text-white/30 text-xs sm:text-sm leading-relaxed mb-6">{item.details}</p>
+                          <div className="inline-block px-4 py-2 glass-surface rounded-lg text-[10px] font-bold text-white/60 border border-white/5">
                             {item.score}
                           </div>
                         </motion.div>
                       </div>
 
                       <div className="relative z-10">
-                        <div className="w-16 h-16 rounded-2xl glass-surface glass-refractive flex items-center justify-center text-indigo-primary shadow-[0_0_30px_rgba(99,102,241,0.2)]">
-                          <item.icon size={28} />
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-obsidian-void border border-white/10 flex items-center justify-center shadow-2xl group-hover:border-cyan-accent/50 transition-colors">
+                          <item.icon size={28} className="text-cyan-accent" />
                         </div>
                       </div>
 
-                      <div className="flex-1 hidden md:block" />
+                      <div className="hidden md:block md:w-1/2" />
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Call to Action */}
-              <div className="mt-60 text-center">
-                <GlassCard className="p-20 border-white/10 relative overflow-hidden">
+              <div className="mt-32 sm:mt-60 text-center px-4 sm:px-0">
+                <div className="relative py-16 sm:py-32 px-4 sm:px-12 glass-surface rounded-3xl sm:rounded-[40px] border border-white/5 overflow-hidden text-center">
                   <div className="absolute -top-40 -left-40 w-80 h-80 bg-indigo-primary/10 blur-[100px] rounded-full" />
                   <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-cyan-accent/10 blur-[100px] rounded-full" />
 
-                  <h3 className="text-3xl sm:text-5xl font-sora font-black tracking-tighter mb-8 leading-tight uppercase">Ready to start the <br /> next chapter <span className="text-cyan-accent">together?</span></h3>
+                  <h3 className="text-xl sm:text-5xl font-sora font-black tracking-tighter mb-8 leading-tight uppercase px-2">Ready to start the <br className="hidden sm:block" /> next chapter <span className="text-cyan-accent">together?</span></h3>
                   <GlassButton primary onClick={() => setActivePage('contact')}>
                     Get In Touch
                   </GlassButton>
-                </GlassCard>
+                </div>
               </div>
             </motion.section>
           )}
@@ -720,7 +704,7 @@ const App = () => {
                       >
                         Collaboration
                       </motion.div>
-                      <h2 className="text-4xl sm:text-6xl lg:text-9xl font-sora font-black tracking-tighter mb-12 uppercase leading-[1.1] sm:leading-[0.8]">
+                      <h2 className="text-3xl sm:text-6xl lg:text-9xl font-sora font-black tracking-tighter mb-12 uppercase leading-[1.1] sm:leading-[0.8]">
                         HIRE THE <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-primary to-cyan-accent">ARCHITECT.</span>
                       </h2>
                       <p className="text-white/40 max-w-2xl mx-auto text-base sm:text-lg font-light leading-relaxed px-4">
@@ -781,125 +765,85 @@ const App = () => {
                     </div>
 
                     {/* Detailed Hire Form */}
-                    <div id="hire-form" className="grid lg:grid-cols-5 gap-20">
-                      <div className="lg:col-span-2">
-                        <h3 className="text-4xl font-sora font-black tracking-tighter uppercase mb-8">Service <br /><span className="text-indigo-primary">Agreement</span></h3>
-                        <p className="text-white/40 text-lg font-light leading-relaxed mb-12">
-                          Please provide detailed project requirements. Once dispatched, I will architect a formal proposal within 24-48 business hours.
-                        </p>
-                        
-                        <div className="space-y-8">
-                          <div className="flex gap-6 items-center">
-                            <div className="w-12 h-12 rounded-xl glass-surface flex items-center justify-center text-cyan-accent"><Terminal size={20} /></div>
-                            <div>
-                              <div className="text-sm font-bold">Tech-First Approach</div>
-                              <div className="text-[10px] text-white/40 uppercase tracking-widest">Optimized for performance</div>
-                            </div>
+                    <div id="hire-form" className="grid lg:grid-cols-5 gap-12 sm:gap-20">
+                      {/* Form Side */}
+                      <div className="lg:col-span-3 order-2 lg:order-1">
+                        <GlassCard className="p-6 sm:p-20 relative overflow-hidden group">
+                          <div className="absolute top-0 right-0 p-8 text-white/5 group-hover:text-cyan-accent/10 transition-colors">
+                            <Mail size={120} />
                           </div>
-                          <div className="flex gap-6 items-center">
-                            <div className="w-12 h-12 rounded-xl glass-surface flex items-center justify-center text-indigo-primary"><Palette size={20} /></div>
-                            <div>
-                              <div className="text-sm font-bold">Refractive Design</div>
-                              <div className="text-[10px] text-white/40 uppercase tracking-widest">Wowed users guaranteed</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="lg:col-span-3">
-                        <GlassCard className="p-10 sm:p-16 border-white/10 relative overflow-hidden">
-                          <form 
-                            onSubmit={async (e) => {
-                              e.preventDefault();
-                              const formData = new FormData(e.target);
-                              formData.append("access_key", "731279f7-bd59-47d9-994c-588812547ecb");
-                              formData.append("subject", `HIRE INQUIRY: ${formData.get('project_type')}`);
-                              
-                              try {
-                                const response = await fetch("https://api.web3forms.com/submit", {
-                                  method: "POST",
-                                  body: formData
-                                });
-                                if (response.ok) {
-                                  setIsSubmitted(true);
-                                  setTimeout(() => {
-                                    setIsSubmitted(false);
-                                    setActivePage('home');
-                                  }, 3000);
-                                }
-                              } catch (error) {
-                                console.error("Dispatch Error:", error);
-                              }
-                            }}
-                            className="space-y-8"
-                          >
-                            <div className="grid sm:grid-cols-2 gap-8">
+                          
+                          <form action="https://api.web3forms.com/submit" method="POST" className="relative z-10 space-y-8 sm:space-y-12">
+                            <input type="hidden" name="access_key" value="731279f7-bd59-47d9-994c-588812547ecb" />
+                            <input type="hidden" name="from_name" value="Portfolio Inquiry" />
+                            <input type="hidden" name="subject" value="New Hire Inquiry from Portfolio" />
+                            <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+                            
+                            <div className="grid sm:grid-cols-2 gap-8 sm:gap-12">
                               <div className="space-y-4">
-                                <label className="text-[10px] font-black tracking-widest text-white/40 uppercase ml-1">Engagement Type</label>
-                                <select 
-                                  name="project_type"
-                                  className="w-full px-6 py-4 glass-surface rounded-xl border border-white/5 focus:border-cyan-accent/50 outline-none transition-all text-sm appearance-none"
-                                >
-                                  <option value="project">Project Based</option>
-                                  <option value="monthly">Monthly Retainer</option>
-                                  <option value="career">Full-Time / Intern</option>
-                                </select>
-                              </div>
-                              <div className="space-y-4">
-                                <label className="text-[10px] font-black tracking-widest text-white/40 uppercase ml-1">Budget Range</label>
-                                <input 
-                                  type="text" 
-                                  name="budget"
-                                  placeholder="e.g. $1k - $5k"
-                                  className="w-full px-6 py-4 glass-surface rounded-xl border border-white/5 focus:border-cyan-accent/50 outline-none transition-all text-sm"
-                                />
-                              </div>
-                            </div>
-
-                            <div className="grid sm:grid-cols-2 gap-8">
-                              <div className="space-y-4">
-                                <label className="text-[10px] font-black tracking-widest text-white/40 uppercase ml-1">Your Name</label>
+                                <label className="text-[10px] font-black tracking-widest text-white/40 uppercase ml-1">Identity</label>
                                 <input 
                                   type="text" 
                                   name="name"
                                   required
-                                  placeholder="Company or Individual"
-                                  className="w-full px-6 py-4 glass-surface rounded-xl border border-white/5 focus:border-cyan-accent/50 outline-none transition-all text-sm"
+                                  placeholder="YOUR NAME" 
+                                  className="w-full bg-white/5 border-b border-white/10 px-0 py-4 focus:border-cyan-accent transition-colors outline-none text-white font-sora placeholder:text-white/10"
                                 />
                               </div>
                               <div className="space-y-4">
-                                <label className="text-[10px] font-black tracking-widest text-white/40 uppercase ml-1">Email Address</label>
+                                <label className="text-[10px] font-black tracking-widest text-white/40 uppercase ml-1">Digital Address</label>
                                 <input 
                                   type="email" 
                                   name="email"
                                   required
-                                  placeholder="your@email.com"
-                                  className="w-full px-6 py-4 glass-surface rounded-xl border border-white/5 focus:border-cyan-accent/50 outline-none transition-all text-sm"
+                                  placeholder="EMAIL@EXAMPLE.COM" 
+                                  className="w-full bg-white/5 border-b border-white/10 px-0 py-4 focus:border-cyan-accent transition-colors outline-none text-white font-sora placeholder:text-white/10"
                                 />
                               </div>
                             </div>
 
                             <div className="space-y-4">
-                              <label className="text-[10px] font-black tracking-widest text-white/40 uppercase ml-1">Project Brief</label>
+                              <label className="text-[10px] font-black tracking-widest text-white/40 uppercase ml-1">The Proposal</label>
                               <textarea 
                                 name="message"
                                 required
-                                rows="6"
-                                placeholder="Tell me about your goals and technical requirements..."
-                                className="w-full px-6 py-4 glass-surface rounded-xl border border-white/5 focus:border-cyan-accent/50 outline-none transition-all text-sm resize-none"
-                              ></textarea>
+                                rows={4}
+                                placeholder="TELL ME ABOUT YOUR PROJECT..." 
+                                className="w-full bg-white/5 border-b border-white/10 px-0 py-4 focus:border-cyan-accent transition-colors outline-none text-white font-sora placeholder:text-white/10 resize-none"
+                              />
                             </div>
 
-                            <div className="pt-4">
-                              <button 
-                                type="submit"
-                                className="w-full py-5 bg-gradient-to-r from-indigo-primary to-cyan-accent rounded-xl font-sora font-black text-xs uppercase tracking-[0.3em] hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] transition-all active:scale-95"
-                              >
-                                Request Proposal
-                              </button>
-                            </div>
+                            <button 
+                              type="submit"
+                              className="group flex items-center gap-6 bg-cyan-accent text-obsidian-void px-8 sm:px-12 py-5 sm:py-6 rounded-2xl font-black text-xs sm:text-sm tracking-widest uppercase hover:scale-[1.02] active:scale-[0.98] transition-all"
+                            >
+                              Send Message
+                              <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
+                            </button>
                           </form>
                         </GlassCard>
+                      </div>
+
+                      {/* Details Side */}
+                      <div className="lg:col-span-2 order-1 lg:order-2 space-y-12 sm:space-y-20">
+                        <div>
+                          <h3 className="text-xs font-black tracking-widest text-cyan-accent uppercase mb-8">Contact Nodes</h3>
+                          <div className="space-y-8 sm:space-y-12">
+                            {[
+                              { icon: Mail, label: 'Primary Email', value: 'sakshamshakya319@gmail.com' },
+                              { icon: Github, label: 'Open Source', value: 'github.com/saksham' },
+                              { icon: Linkedin, label: 'Professional Network', value: 'linkedin.com/in/saksham' }
+                            ].map((item, i) => (
+                              <div key={i} className="group cursor-pointer">
+                                <div className="flex items-center gap-4 mb-2">
+                                  <item.icon className="text-white/20 group-hover:text-indigo-primary transition-colors" size={16} />
+                                  <span className="text-[10px] font-black tracking-widest text-white/20 uppercase">{item.label}</span>
+                                </div>
+                                <div className="text-lg sm:text-xl font-sora font-bold text-white/60 group-hover:text-white transition-colors truncate">{item.value}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </motion.div>
