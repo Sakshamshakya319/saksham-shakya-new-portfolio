@@ -3,6 +3,7 @@
 |                                                                       |
 | Aspiring Full-Stack Developer \| MCA @ Lovely Professional University |
 |                                                                       |
+| sakshamshakya94@gmail.com sakshamshakya.tech                          |
 | linkedin.com/in/sakshamshakya India 🇮🇳                                |
 +-----------------------------------------------------------------------+
 

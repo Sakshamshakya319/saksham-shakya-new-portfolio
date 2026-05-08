@@ -9,12 +9,12 @@
   },
   "dependencies": {
     "animejs": "^3.2.2",
+    "framer-motion": "^12.38.0",
     "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^1.14.0",
     "mongodb": "^6.8.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "quill": "^2.0.2",
-    "react-quill": "^2.0.0"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",
