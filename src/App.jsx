@@ -124,7 +124,7 @@ const App = () => {
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-6xl sm:text-9xl font-sora font-extrabold leading-[0.9] mb-8 tracking-tighter"
+                    className="text-4xl sm:text-6xl lg:text-9xl font-sora font-extrabold leading-[1.1] sm:leading-[0.9] mb-8 tracking-tighter"
                   >
                     SAKSHAM <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-primary via-cyan-accent to-indigo-primary bg-[length:200%_auto] animate-gradient-flow">
@@ -136,7 +136,7 @@ const App = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="text-white/40 text-lg sm:text-xl max-w-xl mb-12 leading-relaxed font-light"
+                    className="text-white/40 text-base sm:text-lg lg:text-xl max-w-xl mb-12 leading-relaxed font-light"
                   >
                     Crafting scalable full-stack applications and immersive digital experiences. Currently pursuing MCA at LPU with a focus on engineering impact.
                   </motion.p>
@@ -167,7 +167,7 @@ const App = () => {
                     <GlassCard className="absolute inset-0 z-20 border-white/20">
                       <div className="w-full h-full relative overflow-hidden rounded-xl">
                         <img
-                          src="https://i.ibb.co/PnsgYc4/saksham.png"
+                          src="/saksham.jpg"
                           alt="Saksham Shakya"
                           className="w-full h-full object-cover scale-110 grayscale hover:grayscale-0 transition-all duration-700"
                         />
@@ -178,24 +178,24 @@ const App = () => {
                     <motion.div
                       animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
                       transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                      className="absolute -top-10 -right-12 z-30"
+                      className="absolute -top-4 -right-4 sm:-top-10 sm:-right-12 z-30"
                     >
-                      <GlassCard className="p-4 backdrop-blur-3xl border-white/20">
-                        <Award className="text-cyan-accent mb-2" size={24} />
-                        <div className="text-[10px] font-bold uppercase tracking-widest text-white/60">Achiever</div>
-                        <div className="text-xs font-bold">NSS</div>
+                      <GlassCard className="p-3 sm:p-4 backdrop-blur-3xl border-white/20">
+                        <Award className="text-cyan-accent mb-2" size={20} />
+                        <div className="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-white/60">Achiever</div>
+                        <div className="text-[10px] sm:text-xs font-bold">NSS</div>
                       </GlassCard>
                     </motion.div>
 
                     <motion.div
                       animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
                       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                      className="absolute -bottom-8 -left-12 z-10"
+                      className="absolute -bottom-4 -left-4 sm:-bottom-8 sm:-left-12 z-10"
                     >
-                      <GlassCard className="p-4 backdrop-blur-3xl border-white/20">
-                        <Code2 className="text-indigo-primary mb-2" size={24} />
-                        <div className="text-[10px] font-bold uppercase tracking-widest text-white/60">Logic</div>
-                        <div className="text-xs font-bold">Scalable</div>
+                      <GlassCard className="p-3 sm:p-4 backdrop-blur-3xl border-white/20">
+                        <Code2 className="text-indigo-primary mb-2" size={20} />
+                        <div className="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-white/60">Logic</div>
+                        <div className="text-[10px] sm:text-xs font-bold">Scalable</div>
                       </GlassCard>
                     </motion.div>
                   </motion.div>
@@ -205,7 +205,7 @@ const App = () => {
               {/* Achievements Section */}
               <section className="py-32 border-t border-white/5">
                 <div className="mb-20">
-                  <h2 className="text-4xl sm:text-6xl font-sora font-black tracking-tighter mb-4 uppercase">Key <span className="text-cyan-accent">Achievements</span></h2>
+                  <h2 className="text-3xl sm:text-6xl font-sora font-black tracking-tighter mb-4 uppercase">Key <span className="text-cyan-accent">Achievements</span></h2>
                   <div className="h-1 w-24 bg-gradient-to-r from-indigo-primary to-cyan-accent rounded-full" />
                 </div>
                 <div className="grid md:grid-cols-3 gap-8">
@@ -223,7 +223,7 @@ const App = () => {
               <section className="py-32 border-t border-white/5">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
                   <div>
-                    <h2 className="text-4xl sm:text-6xl font-sora font-black tracking-tighter mb-4 uppercase">Selected <span className="text-indigo-primary">Works</span></h2>
+                    <h2 className="text-3xl sm:text-6xl font-sora font-black tracking-tighter mb-4 uppercase">Selected <span className="text-indigo-primary">Works</span></h2>
                     <div className="h-1 w-24 bg-gradient-to-r from-cyan-accent to-indigo-primary rounded-full" />
                   </div>
                   <button
@@ -338,10 +338,10 @@ const App = () => {
                 >
                   Project Archive
                 </motion.div>
-                <h2 className="text-6xl sm:text-9xl font-sora font-black tracking-tighter mb-12 uppercase leading-[0.8]">
+                <h2 className="text-4xl sm:text-6xl lg:text-9xl font-sora font-black tracking-tighter mb-12 uppercase leading-[1.1] sm:leading-[0.8]">
                   ENGINEERING <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-primary to-cyan-accent">IMPACT.</span>
                 </h2>
-                <p className="text-white/40 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+                <p className="text-white/40 max-w-2xl mx-auto text-base sm:text-lg font-light leading-relaxed px-4">
                   A curated collection of production-grade applications, full-stack architectures, and experimental prototypes built with modern technologies.
                 </p>
               </div>
@@ -356,13 +356,13 @@ const App = () => {
 
                 <GlassCard className="overflow-hidden border-white/10">
                   <div className="grid lg:grid-cols-2">
-                    <div className="p-12 lg:p-20 flex flex-col justify-center">
+                    <div className="p-8 sm:p-12 lg:p-20 flex flex-col justify-center">
                       <div className="flex items-center gap-3 mb-8">
-                        <Terminal className="text-cyan-accent" size={20} />
-                        <span className="text-xs font-bold tracking-widest text-white/60 uppercase">System Architecture</span>
+                        <Terminal className="text-cyan-accent" size={18} />
+                        <span className="text-[10px] font-bold tracking-widest text-white/60 uppercase">System Architecture</span>
                       </div>
-                      <h3 className="text-4xl sm:text-5xl font-sora font-black mb-8 leading-tight">LPU NSS <br />Management Portal</h3>
-                      <p className="text-white/50 text-lg leading-relaxed mb-12 font-light">
+                      <h3 className="text-3xl sm:text-5xl font-sora font-black mb-8 leading-tight">LPU NSS <br />Management Portal</h3>
+                      <p className="text-white/50 text-base sm:text-lg leading-relaxed mb-12 font-light">
                         A robust full-stack solution engineered to streamline event coordination, volunteer tracking, and certificate automation for the National Service Scheme. Featuring QR-based attendance and Razorpay integration.
                       </p>
                       <div className="flex flex-wrap gap-3 mb-12">
@@ -490,7 +490,7 @@ const App = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <h2 className="text-6xl sm:text-8xl font-sora font-black tracking-tighter mb-12 uppercase leading-[0.8]">
+                  <h2 className="text-4xl sm:text-6xl lg:text-8xl font-sora font-black tracking-tighter mb-12 uppercase leading-[1.1] sm:leading-[0.8]">
                     THE <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-primary to-cyan-accent">ARCHITECT'S</span> <br /> STORY
                   </h2>
                   <div className="space-y-6 text-white/50 text-xl font-light leading-relaxed">
@@ -510,8 +510,8 @@ const App = () => {
                   <div className="absolute -inset-20 bg-indigo-primary/10 blur-[120px] rounded-full animate-pulse" />
                   <GlassCard className="p-8 aspect-square flex items-center justify-center relative z-10">
                     <div className="text-center">
-                      <div className="text-[120px] font-sora font-black text-white/5 leading-none mb-4">2025</div>
-                      <div className="text-xs font-bold tracking-[0.5em] text-cyan-accent uppercase">Current Milestone</div>
+                      <div className="text-6xl sm:text-8xl lg:text-[120px] font-sora font-black text-white/5 leading-none mb-4">2025</div>
+                      <div className="text-[10px] font-bold tracking-[0.5em] text-cyan-accent uppercase">Current Milestone</div>
                       <div className="mt-8 px-6 py-3 glass-surface rounded-2xl border border-white/5">
                         <span className="text-white font-bold">MCA @ Lovely Professional University</span>
                       </div>
@@ -558,8 +558,8 @@ const App = () => {
                 <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/10 to-transparent hidden md:block" />
 
                 <div className="text-center mb-24">
-                  <h2 className="text-4xl sm:text-6xl font-sora font-black tracking-tighter uppercase mb-4">Academic <span className="text-indigo-primary">Journey</span></h2>
-                  <p className="text-white/30 text-sm tracking-widest uppercase font-bold">From fundamentals to mastery</p>
+                  <h2 className="text-3xl sm:text-6xl font-sora font-black tracking-tighter uppercase mb-4">Academic <span className="text-indigo-primary">Journey</span></h2>
+                  <p className="text-white/30 text-[10px] sm:text-sm tracking-widest uppercase font-bold">From fundamentals to mastery</p>
                 </div>
 
                 <div className="space-y-32">
@@ -608,8 +608,8 @@ const App = () => {
                           whileInView={{ opacity: 1, x: 0 }}
                         >
                           <div className="text-[10px] font-black text-cyan-accent tracking-[0.4em] uppercase mb-4">{item.year}</div>
-                          <h4 className="text-3xl font-sora font-black mb-4 leading-tight">{item.title}</h4>
-                          <div className="text-white/60 font-bold mb-4">{item.inst}</div>
+                          <h4 className="text-2xl sm:text-3xl font-sora font-black mb-4 leading-tight">{item.title}</h4>
+                          <div className="text-sm sm:text-base text-white/60 font-bold mb-4">{item.inst}</div>
                           <p className="text-white/30 text-sm leading-relaxed mb-6">{item.details}</p>
                           <div className="inline-block px-4 py-2 glass-surface rounded-lg text-xs font-bold text-white/60 border border-white/5">
                             {item.score}
@@ -635,7 +635,7 @@ const App = () => {
                   <div className="absolute -top-40 -left-40 w-80 h-80 bg-indigo-primary/10 blur-[100px] rounded-full" />
                   <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-cyan-accent/10 blur-[100px] rounded-full" />
 
-                  <h3 className="text-4xl sm:text-5xl font-sora font-black tracking-tighter mb-8 leading-tight uppercase">Ready to start the <br /> next chapter <span className="text-cyan-accent">together?</span></h3>
+                  <h3 className="text-3xl sm:text-5xl font-sora font-black tracking-tighter mb-8 leading-tight uppercase">Ready to start the <br /> next chapter <span className="text-cyan-accent">together?</span></h3>
                   <GlassButton primary onClick={() => setActivePage('contact')}>
                     Get In Touch
                   </GlassButton>
@@ -681,7 +681,7 @@ const App = () => {
                         <div className="absolute inset-0 border border-indigo-primary/20 rounded-3xl -m-8 animate-pulse" />
                       </motion.div>
                       
-                      <h3 className="text-5xl font-sora font-black mb-6 tracking-tighter relative z-10 uppercase">
+                      <h3 className="text-3xl sm:text-5xl font-sora font-black mb-6 tracking-tighter relative z-10 uppercase">
                         PROPOSAL <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-primary to-cyan-accent">DISPATCHED.</span>
                       </h3>
                       
@@ -720,16 +720,16 @@ const App = () => {
                       >
                         Collaboration
                       </motion.div>
-                      <h2 className="text-6xl sm:text-9xl font-sora font-black tracking-tighter mb-12 uppercase leading-[0.8]">
+                      <h2 className="text-4xl sm:text-6xl lg:text-9xl font-sora font-black tracking-tighter mb-12 uppercase leading-[1.1] sm:leading-[0.8]">
                         HIRE THE <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-primary to-cyan-accent">ARCHITECT.</span>
                       </h2>
-                      <p className="text-white/40 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+                      <p className="text-white/40 max-w-2xl mx-auto text-base sm:text-lg font-light leading-relaxed px-4">
                         Select the engagement model that fits your goals. From rapid prototypes to long-term architectural scaling.
                       </p>
                     </div>
 
                     {/* Engagement Tiers */}
-                    <div className="grid md:grid-cols-3 gap-8 mb-40">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-40">
                       {[
                         { 
                           title: "Project Based", 
@@ -754,16 +754,16 @@ const App = () => {
                           icon: Rocket
                         }
                       ].map((tier, i) => (
-                        <GlassCard key={i} delay={i * 0.1} className={`p-12 relative overflow-hidden ${tier.featured ? 'border-cyan-accent/30 scale-105 z-10' : 'border-white/5'}`}>
+                        <GlassCard key={i} delay={i * 0.1} className={`p-8 sm:p-12 relative overflow-hidden ${tier.featured ? 'border-cyan-accent/30 sm:scale-105 z-10' : 'border-white/5'}`}>
                           {tier.featured && <div className="absolute top-0 right-0 bg-cyan-accent text-obsidian-void text-[8px] font-black px-4 py-1 tracking-widest uppercase">Popular</div>}
-                          <tier.icon className={tier.featured ? 'text-cyan-accent mb-8' : 'text-white/20 mb-8'} size={40} />
-                          <h3 className="text-2xl font-sora font-black mb-2">{tier.title}</h3>
-                          <div className="text-sm font-bold text-cyan-accent mb-6">{tier.price}</div>
-                          <p className="text-white/40 text-sm mb-10 leading-relaxed">{tier.desc}</p>
+                          <tier.icon className={tier.featured ? 'text-cyan-accent mb-8' : 'text-white/20 mb-8'} size={32} />
+                          <h3 className="text-xl sm:text-2xl font-sora font-black mb-2">{tier.title}</h3>
+                          <div className="text-[12px] font-bold text-cyan-accent mb-6">{tier.price}</div>
+                          <p className="text-white/40 text-[13px] mb-10 leading-relaxed">{tier.desc}</p>
                           <ul className="space-y-4 mb-12">
                             {tier.features.map(f => (
-                              <li key={f} className="text-[10px] font-bold text-white/60 flex items-center gap-3">
-                                <Sparkles size={10} className="text-indigo-primary" /> {f}
+                              <li key={f} className="text-[9px] sm:text-[10px] font-bold text-white/60 flex items-center gap-3">
+                                <Sparkles size={8} className="text-indigo-primary" /> {f}
                               </li>
                             ))}
                           </ul>
@@ -772,7 +772,7 @@ const App = () => {
                               const el = document.getElementById('hire-form');
                               el?.scrollIntoView({ behavior: 'smooth' });
                             }}
-                            className={`w-full py-4 rounded-xl text-[10px] font-black tracking-widest uppercase transition-all ${tier.featured ? 'bg-cyan-accent text-obsidian-void' : 'glass-surface text-white hover:border-cyan-accent'}`}
+                            className={`w-full py-4 rounded-xl text-[9px] sm:text-[10px] font-black tracking-widest uppercase transition-all ${tier.featured ? 'bg-cyan-accent text-obsidian-void' : 'glass-surface text-white hover:border-cyan-accent'}`}
                           >
                             Select Plan
                           </button>
