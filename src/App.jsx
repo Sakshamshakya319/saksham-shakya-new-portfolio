@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Mail,
+  Mail, ArrowRight,
   ExternalLink, Globe, Palette, ChevronRight,
   Sparkles, Layers, Box, Terminal, Code2, Rocket,
   Award, Heart, GraduationCap, MapPin
@@ -97,7 +97,7 @@ const App = () => {
       <Background3D />
       <Navbar activePage={activePage} setActivePage={setActivePage} />
 
-      <main className="relative z-10 pt-32 pb-20 px-6 overflow-hidden">
+      <main className="relative z-10 pt-28 sm:pt-40 pb-20 px-0 overflow-hidden">
         <AnimatePresence mode="wait">
           {activePage === 'home' && (
             <motion.div
@@ -105,7 +105,7 @@ const App = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="max-w-7xl mx-auto"
+              className="max-w-7xl mx-auto px-4 sm:px-6"
             >
               {/* Hero Section */}
               <section className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh] py-20">
@@ -738,7 +738,7 @@ const App = () => {
                           icon: Rocket
                         }
                       ].map((tier, i) => (
-                        <GlassCard key={i} delay={i * 0.1} className={`p-8 sm:p-12 relative overflow-hidden ${tier.featured ? 'border-cyan-accent/30 sm:scale-105 z-10' : 'border-white/5'}`}>
+                        <GlassCard key={i} delay={i * 0.1} className={`relative overflow-hidden ${tier.featured ? 'border-cyan-accent/30 sm:scale-105 z-10' : 'border-white/5'}`}>
                           {tier.featured && <div className="absolute top-0 right-0 bg-cyan-accent text-obsidian-void text-[8px] font-black px-4 py-1 tracking-widest uppercase">Popular</div>}
                           <tier.icon className={tier.featured ? 'text-cyan-accent mb-8' : 'text-white/20 mb-8'} size={32} />
                           <h3 className="text-xl sm:text-2xl font-sora font-black mb-2">{tier.title}</h3>
@@ -768,7 +768,7 @@ const App = () => {
                     <div id="hire-form" className="grid lg:grid-cols-5 gap-12 sm:gap-20">
                       {/* Form Side */}
                       <div className="lg:col-span-3 order-2 lg:order-1 px-4 sm:px-0">
-                        <GlassCard className="p-6 sm:p-20 relative overflow-hidden group">
+                        <GlassCard className="relative overflow-hidden group">
                           <div className="absolute top-0 right-0 p-8 text-white/5 group-hover:text-cyan-accent/10 transition-colors">
                             <Mail size={120} />
                           </div>
