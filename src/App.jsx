@@ -494,7 +494,7 @@ const App = () => {
                   <div className="absolute -inset-10 sm:-inset-20 bg-indigo-primary/10 blur-[80px] sm:blur-[120px] rounded-full animate-pulse" />
                   <GlassCard className="p-8 sm:p-12 aspect-square flex flex-col items-center justify-center relative z-10 overflow-hidden">
                     <div className="text-center w-full">
-                      <div className="text-6xl sm:text-8xl lg:text-[120px] font-sora font-black text-white/5 leading-none mb-2 sm:mb-4 tracking-tighter">2025</div>
+                      <div className="text-6xl sm:text-8xl lg:text-[120px] font-sora font-black text-white/5 leading-none mb-2 sm:mb-4 tracking-tighter">2026</div>
                       <div className="text-[9px] sm:text-[10px] font-black tracking-[0.4em] sm:tracking-[0.5em] text-cyan-accent uppercase mb-6 sm:mb-8">Current Milestone</div>
                       <div className="px-4 sm:px-6 py-3 sm:py-4 glass-surface rounded-xl sm:rounded-2xl border border-white/5 mx-auto w-full max-w-[280px] sm:max-w-none">
                         <span className="text-white text-[11px] sm:text-base font-bold leading-relaxed">MCA @ Lovely Professional University</span>
@@ -549,7 +549,7 @@ const App = () => {
                 <div className="space-y-20 sm:space-y-32">
                   {[
                     {
-                      year: "2025 — 2027",
+                      year: "2026 — 2027",
                       title: "Master of Computer Applications",
                       inst: "Lovely Professional University",
                       details: "Pursuing advanced studies in software architecture and algorithms.",
@@ -558,7 +558,7 @@ const App = () => {
                       side: 'left'
                     },
                     {
-                      year: "2022 — 2025",
+                      year: "2022 — 2026",
                       title: "Bachelor of Computer Applications",
                       inst: "Lovely Professional University",
                       details: "Foundation in computer science, web technologies, and systems.",
@@ -733,7 +733,7 @@ const App = () => {
                         { 
                           title: "Full-Time / Intern", 
                           price: "Role Based", 
-                          desc: "Seeking high-impact roles starting 2025. Available for MCA internships and SWE positions.",
+                          desc: "Seeking high-impact roles starting 2026. Available for MCA internships and SWE positions.",
                           features: ["Agile Development", "System Design", "Cloud Architecture", "Team Leadership"],
                           icon: Rocket
                         }
@@ -1069,7 +1069,7 @@ const App = () => {
       <footer className="relative z-10 border-t border-white/5 py-12 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-white/20 text-[10px] font-black tracking-[0.4em] uppercase">
-            © 2025 SAKSHAM SHAKYA · DIGITAL ARCHITECT
+            © 2026 SAKSHAM SHAKYA · DIGITAL ARCHITECT
           </div>
           <div className="flex gap-10">
             <button onClick={() => setActivePage('about')} className="text-white/20 hover:text-white text-[10px] font-black transition-colors uppercase tracking-[0.2em]">Story</button>

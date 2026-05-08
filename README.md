@@ -272,10 +272,10 @@ A full-viewport Canvas 2D animation runs continuously behind all pages:
 
   --------------------- -------------------------------------------------
   **MCA (Current)**     Master of Computer Applications --- LPU, Punjab
-                        (August 2025 -- August 2027)
+                        (August 2026 -- August 2027)
 
   **B.Sc. CS**          Bachelor\'s Degree, Computer Science --- LPU,
-                        Punjab (August 2022 -- June 2025)
+                        Punjab (August 2022 -- June 2026)
 
   **High School**       High School Diploma --- Dr. Kiran Saujiya Senior
                         Secondary School, Mainpuri

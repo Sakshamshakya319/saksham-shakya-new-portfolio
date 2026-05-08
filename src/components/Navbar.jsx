@@ -148,7 +148,7 @@ const Navbar = ({ activePage, setActivePage }) => {
             </div>
 
             <div className="pt-12 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-6">
-              <div className="text-[10px] font-black tracking-widest text-white/20 uppercase text-center sm:text-left">Available for MCA Internships 2025</div>
+              <div className="text-[10px] font-black tracking-widest text-white/20 uppercase text-center sm:text-left">Available for MCA Internships 2026</div>
               <div className="flex gap-6">
                 <Github size={20} className="text-white/20 hover:text-white transition-colors" />
                 <Linkedin size={20} className="text-white/20 hover:text-white transition-colors" />
