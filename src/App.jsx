@@ -209,7 +209,7 @@ const App = () => {
                   <h2 className="text-2xl sm:text-6xl font-sora font-black tracking-tighter mb-4 uppercase">Key <span className="text-cyan-accent">Achievements</span></h2>
                   <div className="h-1 w-20 sm:w-24 bg-gradient-to-r from-indigo-primary to-cyan-accent rounded-full" />
                 </div>
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-3 gap-8 px-4 sm:px-0">
                   {ACHIEVEMENTS.map((item, i) => (
                     <GlassCard key={i} delay={i * 0.1}>
                       <item.icon className="text-cyan-accent mb-6" size={32} />
@@ -235,7 +235,7 @@ const App = () => {
                   </button>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-3 gap-8 px-4 sm:px-0">
                   {PROJECTS.map((project, index) => (
                     <GlassCard key={project.id} delay={index * 0.1}>
                       <div className="group relative h-full flex flex-col">
@@ -328,7 +328,7 @@ const App = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="max-w-7xl mx-auto py-20"
+              className="max-w-7xl mx-auto py-12 sm:py-20 px-4 sm:px-6"
             >
               {/* Projects Hero */}
               <div className="text-center mb-20 sm:mb-40">
@@ -339,8 +339,8 @@ const App = () => {
                 >
                   Project Archive
                 </motion.div>
-                <h2 className="text-3xl sm:text-6xl lg:text-9xl font-sora font-black tracking-tighter mb-8 sm:mb-12 uppercase leading-[1.1] sm:leading-[0.8]">
-                  ENGINEERING <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-primary to-cyan-accent">IMPACT.</span>
+                <h2 className="text-3xl sm:text-6xl lg:text-9xl font-sora font-black tracking-tighter mb-8 sm:mb-12 uppercase leading-[1.1] sm:leading-[0.8] px-2">
+                  ENGINEERING <br className="hidden xs:block" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-primary to-cyan-accent">IMPACT.</span>
                 </h2>
                 <p className="text-white/40 max-w-2xl mx-auto text-sm sm:text-lg font-light leading-relaxed px-4">
                   A curated collection of production-grade applications, full-stack architectures, and experimental prototypes built with modern technologies.
@@ -380,7 +380,7 @@ const App = () => {
                         </GlassButton>
                       </div>
                     </div>
-                    <div className="relative min-h-[300px] sm:min-h-[500px] bg-gradient-to-br from-indigo-primary/20 to-cyan-accent/20 flex items-center justify-center p-8 sm:p-12 order-1 lg:order-2">
+                    <div className="relative min-h-[250px] sm:min-h-[500px] bg-gradient-to-br from-indigo-primary/20 to-cyan-accent/20 flex items-center justify-center p-6 sm:p-12 order-1 lg:order-2">
                       <motion.div
                         whileHover={{ scale: 1.05, rotate: 2 }}
                         className="w-full aspect-video bg-obsidian-void rounded-2xl border border-white/10 shadow-2xl overflow-hidden relative group"
@@ -407,7 +407,7 @@ const App = () => {
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 sm:px-0">
                   {PROJECTS.map((project, index) => (
                     <GlassCard key={project.id} delay={index * 0.1}>
                       <div className="group relative h-full flex flex-col">
@@ -451,9 +451,9 @@ const App = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   className="relative z-10"
                 >
-                  <Github className="mx-auto mb-12 text-white/10" size={80} />
-                  <h3 className="text-4xl sm:text-6xl font-sora font-black tracking-tighter mb-8 uppercase leading-tight">Want to see the <br /> <span className="text-cyan-accent">Full Codebase?</span></h3>
-                  <p className="text-white/40 max-w-xl mx-auto mb-12 text-lg font-light">Visit my GitHub to explore 50+ repositories, experimental prototypes, and open-source contributions.</p>
+                  <Github className="mx-auto mb-8 text-white/10" size={60} />
+                  <h3 className="text-3xl sm:text-6xl font-sora font-black tracking-tighter mb-8 uppercase leading-tight px-4">Want to see the <br /> <span className="text-cyan-accent">Full Codebase?</span></h3>
+                  <p className="text-white/40 max-w-xl mx-auto mb-12 text-sm sm:text-lg font-light px-6">Visit my GitHub to explore 50+ repositories, experimental prototypes, and open-source contributions.</p>
                   <GlassButton primary onClick={() => window.open('https://github.com/sakshamshakya319', '_blank')}>
                     Visit GitHub Profile
                   </GlassButton>
