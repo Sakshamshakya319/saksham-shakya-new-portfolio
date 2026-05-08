@@ -634,7 +634,7 @@ const App = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="max-w-7xl mx-auto py-20"
+              className="max-w-7xl mx-auto py-12 sm:py-20 px-4 sm:px-6"
             >
               <AnimatePresence mode="wait">
                 {isSubmitted ? (
@@ -704,7 +704,7 @@ const App = () => {
                       >
                         Collaboration
                       </motion.div>
-                      <h2 className="text-3xl sm:text-6xl lg:text-9xl font-sora font-black tracking-tighter mb-12 uppercase leading-[1.1] sm:leading-[0.8]">
+                      <h2 className="text-3xl sm:text-6xl lg:text-9xl font-sora font-black tracking-tighter mb-12 uppercase leading-[1.1] sm:leading-[0.8] px-2">
                         HIRE THE <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-primary to-cyan-accent">ARCHITECT.</span>
                       </h2>
                       <p className="text-white/40 max-w-2xl mx-auto text-base sm:text-lg font-light leading-relaxed px-4">
@@ -713,7 +713,7 @@ const App = () => {
                     </div>
 
                     {/* Engagement Tiers */}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-40">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-40 px-4 sm:px-0">
                       {[
                         { 
                           title: "Project Based", 
@@ -767,7 +767,7 @@ const App = () => {
                     {/* Detailed Hire Form */}
                     <div id="hire-form" className="grid lg:grid-cols-5 gap-12 sm:gap-20">
                       {/* Form Side */}
-                      <div className="lg:col-span-3 order-2 lg:order-1">
+                      <div className="lg:col-span-3 order-2 lg:order-1 px-4 sm:px-0">
                         <GlassCard className="p-6 sm:p-20 relative overflow-hidden group">
                           <div className="absolute top-0 right-0 p-8 text-white/5 group-hover:text-cyan-accent/10 transition-colors">
                             <Mail size={120} />
@@ -825,7 +825,7 @@ const App = () => {
                       </div>
 
                       {/* Details Side */}
-                      <div className="lg:col-span-2 order-1 lg:order-2 space-y-12 sm:space-y-20">
+                      <div className="lg:col-span-2 order-1 lg:order-2 space-y-12 sm:space-y-20 px-4 sm:px-0">
                         <div>
                           <h3 className="text-xs font-black tracking-widest text-cyan-accent uppercase mb-8">Contact Nodes</h3>
                           <div className="space-y-8 sm:space-y-12">
@@ -858,40 +858,40 @@ const App = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
-              className="max-w-7xl mx-auto py-20"
+              className="max-w-7xl mx-auto py-12 sm:py-20 px-4 sm:px-6"
             >
-              <div className="grid lg:grid-cols-2 gap-20">
+              <div className="grid lg:grid-cols-2 gap-12 sm:gap-20">
                 {/* Contact Info */}
                 <div>
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                   >
-                    <h2 className="text-6xl sm:text-8xl font-sora font-black tracking-tighter mb-12 uppercase leading-[0.8]">
+                    <h2 className="text-5xl sm:text-8xl font-sora font-black tracking-tighter mb-8 sm:mb-12 uppercase leading-[0.9] sm:leading-[0.8]">
                       LET'S <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-primary to-cyan-accent">CONNECT.</span>
                     </h2>
-                    <p className="text-white/40 text-xl font-light leading-relaxed mb-16 max-w-md">
+                    <p className="text-white/40 text-base sm:text-xl font-light leading-relaxed mb-12 sm:mb-16 max-w-md">
                       Whether you have a project in mind, a question, or just want to say hi, I'm always open to discussing new opportunities.
                     </p>
 
                     <div className="space-y-12">
-                      <div className="flex gap-8 items-center group">
-                        <div className="w-16 h-16 rounded-2xl glass-surface flex items-center justify-center text-cyan-accent group-hover:bg-cyan-accent group-hover:text-obsidian-void transition-all">
-                          <Mail size={28} />
+                      <div className="flex gap-4 sm:gap-8 items-center group">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl glass-surface flex items-center justify-center text-cyan-accent group-hover:bg-cyan-accent group-hover:text-obsidian-void transition-all flex-shrink-0">
+                          <Mail size={24} className="sm:w-7 sm:h-7" />
                         </div>
-                        <div>
-                          <div className="text-[10px] font-black tracking-[0.3em] text-white/20 uppercase mb-1">Direct Email</div>
-                          <a href="mailto:sakshamshakya319@gmail.com" className="text-xl font-bold hover:text-cyan-accent transition-colors">sakshamshakya319@gmail.com</a>
+                        <div className="min-w-0 flex-1">
+                          <div className="text-[9px] sm:text-[10px] font-black tracking-[0.3em] text-white/20 uppercase mb-1">Direct Email</div>
+                          <a href="mailto:sakshamshakya319@gmail.com" className="text-lg sm:text-xl font-bold hover:text-cyan-accent transition-colors block truncate">sakshamshakya319@gmail.com</a>
                         </div>
                       </div>
 
-                      <div className="flex gap-8 items-center group">
-                        <div className="w-16 h-16 rounded-2xl glass-surface flex items-center justify-center text-indigo-primary group-hover:bg-indigo-primary group-hover:text-white transition-all">
-                          <MapPin size={28} />
+                      <div className="flex gap-4 sm:gap-8 items-center group">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl glass-surface flex items-center justify-center text-indigo-primary group-hover:bg-indigo-primary group-hover:text-white transition-all flex-shrink-0">
+                          <MapPin size={24} className="sm:w-7 sm:h-7" />
                         </div>
-                        <div>
-                          <div className="text-[10px] font-black tracking-[0.3em] text-white/20 uppercase mb-1">Location</div>
-                          <div className="text-xl font-bold">Jalandhar, PB / Mainpuri, UP</div>
+                        <div className="min-w-0 flex-1">
+                          <div className="text-[9px] sm:text-[10px] font-black tracking-[0.3em] text-white/20 uppercase mb-1">Location</div>
+                          <div className="text-lg sm:text-xl font-bold truncate">Jalandhar, PB / Mainpuri, UP</div>
                         </div>
                       </div>
 
@@ -920,9 +920,9 @@ const App = () => {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.9 }}
-                        className="h-full min-h-[600px] flex items-center"
+                        className="h-full min-h-[500px] sm:min-h-[600px] flex items-center"
                       >
-                        <GlassCard className="w-full p-20 border-cyan-accent/20 text-center relative overflow-hidden flex flex-col items-center justify-center min-h-[500px]">
+                        <GlassCard className="w-full p-8 sm:p-20 border-cyan-accent/20 text-center relative overflow-hidden flex flex-col items-center justify-center min-h-[450px] sm:min-h-[500px]">
                           {/* Animated background glow */}
                           <div className="absolute inset-0 bg-gradient-to-br from-indigo-primary/10 via-transparent to-cyan-accent/10" />
                           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-cyan-accent/5 blur-[120px] rounded-full animate-pulse" />
@@ -943,11 +943,11 @@ const App = () => {
                             <div className="absolute inset-0 border border-indigo-primary/20 rounded-3xl -m-8 animate-pulse" />
                           </motion.div>
                           
-                          <h3 className="text-5xl font-sora font-black mb-6 tracking-tighter relative z-10">
+                          <h3 className="text-3xl sm:text-5xl font-sora font-black mb-6 tracking-tighter relative z-10 uppercase">
                             SIGNAL <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-primary to-cyan-accent">DISPATCHED.</span>
                           </h3>
                           
-                          <p className="text-white/40 text-lg max-w-sm mb-12 font-light leading-relaxed relative z-10">
+                          <p className="text-white/40 text-base sm:text-lg max-w-sm mb-12 font-light leading-relaxed relative z-10 px-4">
                             Your message has entered the safe-lane. A response is being architected as we speak.
                           </p>
 
@@ -974,7 +974,7 @@ const App = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                       >
-                        <GlassCard className="p-10 sm:p-16 border-white/10 relative overflow-hidden">
+                        <GlassCard className="p-6 sm:p-16 border-white/10 relative overflow-hidden">
                           <div className="absolute top-0 right-0 w-40 h-40 bg-cyan-accent/5 blur-[80px] rounded-full" />
                           
                           <form 
