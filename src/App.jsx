@@ -167,7 +167,7 @@ const App = () => {
                     <GlassCard className="absolute inset-0 z-20 border-white/20">
                       <div className="w-full h-full relative overflow-hidden rounded-xl">
                         <img
-                          src="/saksham.jpg"
+                          src="https://i.ibb.co/PnsgYc4/saksham.png"
                           alt="Saksham Shakya"
                           className="w-full h-full object-cover scale-110 grayscale hover:grayscale-0 transition-all duration-700"
                         />
