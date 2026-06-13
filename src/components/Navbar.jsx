@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { 
-  Menu, X, Command, Home, User, Briefcase, Mail, Rocket, ArrowRight, BookOpen, Terminal, Palette 
+  Menu, X, Command, Home, User, Briefcase, Mail, Rocket, ArrowRight, BookOpen, Terminal, Palette, Heart 
 } from 'lucide-react';
 
 // Brand icons removed from lucide-react v1.x — using inline SVG components instead
@@ -17,9 +18,32 @@ const Linkedin = ({ size = 24, className = '' }) => (
   </svg>
 );
 
-const Navbar = ({ activePage, setActivePage }) => {
+const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Helper to get active page from path
+  const getActivePage = () => {
+    switch(location.pathname) {
+      case '/':
+        return 'home';
+      case '/about':
+        return 'about';
+      case '/projects':
+        return 'projects';
+      case '/samarpan-proposal':
+        return 'samarpan';
+      case '/hire':
+        return 'hire';
+      case '/contact':
+        return 'contact';
+      default:
+        return 'home';
+    }
+  };
+  const activePage = getActivePage();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -31,6 +55,7 @@ const Navbar = ({ activePage, setActivePage }) => {
     { id: 'home', label: 'Home', icon: Home },
     { id: 'about', label: 'Story', icon: User },
     { id: 'projects', label: 'Works', icon: Briefcase },
+    { id: 'samarpan', label: 'Samarpan', icon: Heart },
     { id: 'contact', label: 'Contact', icon: Mail },
   ];
 
@@ -49,7 +74,7 @@ const Navbar = ({ activePage, setActivePage }) => {
           {/* Logo */}
           <div 
             className="flex items-center gap-2 sm:gap-3 cursor-pointer group"
-            onClick={() => setActivePage('home')}
+            onClick={() => navigate('/')}
           >
             <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-indigo-primary to-cyan-accent flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform">
               <Command className="text-white" size={16} />
@@ -61,31 +86,36 @@ const Navbar = ({ activePage, setActivePage }) => {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-4 lg:gap-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => setActivePage(link.id)}
-                className={`
-                  group relative flex items-center gap-2 font-inter text-[9px] lg:text-[10px] font-bold tracking-[0.2em] uppercase transition-all
-                  ${activePage === link.id ? 'text-cyan-accent' : 'text-white/40 hover:text-white'}
-                `}
-              >
-                <link.icon size={11} className={activePage === link.id ? "text-cyan-accent" : "text-white/20 group-hover:text-cyan-accent/50 transition-colors"} />
-                {link.label}
-                {activePage === link.id && (
-                  <motion.div 
-                    layoutId="nav-active"
-                    className="absolute -bottom-1 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-accent to-transparent"
-                  />
-                )}
-              </button>
-            ))}
+            {navLinks.map((link) => {
+              const path = link.id === 'home' ? '/' : 
+                          link.id === 'samarpan' ? '/samarpan-proposal' : 
+                          `/${link.id}`;
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => navigate(path)}
+                  className={`
+                    group relative flex items-center gap-2 font-inter text-[9px] lg:text-[10px] font-bold tracking-[0.2em] uppercase transition-all
+                    ${activePage === link.id ? 'text-cyan-accent' : 'text-white/40 hover:text-white'}
+                  `}
+                >
+                  <link.icon size={11} className={activePage === link.id ? "text-cyan-accent" : "text-white/20 group-hover:text-cyan-accent/50 transition-colors"} />
+                  {link.label}
+                  {activePage === link.id && (
+                    <motion.div 
+                      layoutId="nav-active"
+                      className="absolute -bottom-1 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-accent to-transparent"
+                    />
+                  )}
+                </button>
+              );
+            })}
           </div>
 
           {/* Hire Me Link */}
           <div className="flex items-center gap-2 sm:gap-4">
             <button 
-              onClick={() => setActivePage('hire')}
+              onClick={() => navigate('/hire')}
               className="hidden sm:block text-[9px] lg:text-[10px] font-black tracking-widest text-white hover:text-cyan-accent transition-colors border-l border-white/10 pl-4 lg:pl-6"
             >
               HIRE ME
@@ -129,22 +159,27 @@ const Navbar = ({ activePage, setActivePage }) => {
             </div>
 
             <div className="flex flex-col gap-6">
-              {[...navLinks, { id: 'hire', label: 'Hire Me', icon: Rocket }].map((link, idx) => (
-                <button
-                  key={link.id}
-                  onClick={() => {
-                    setActivePage(link.id);
-                    setMobileMenuOpen(false);
-                  }}
-                  className={`
-                    flex items-center gap-6 text-4xl xs:text-5xl font-sora font-extrabold tracking-tighter text-left
-                    ${activePage === link.id ? 'text-cyan-accent' : 'text-white/30'}
-                  `}
-                >
-                  <span className="text-[10px] font-black text-white/10 font-inter uppercase tracking-[0.5em]">0{idx + 1}</span>
-                  {link.label}
-                </button>
-              ))}
+              {[...navLinks, { id: 'hire', label: 'Hire Me', icon: Rocket }].map((link, idx) => {
+                const path = link.id === 'home' ? '/' : 
+                            link.id === 'samarpan' ? '/samarpan-proposal' : 
+                            `/${link.id}`;
+                return (
+                  <button
+                    key={link.id}
+                    onClick={() => {
+                      navigate(path);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`
+                      flex items-center gap-6 text-4xl xs:text-5xl font-sora font-extrabold tracking-tighter text-left
+                      ${activePage === link.id ? 'text-cyan-accent' : 'text-white/30'}
+                    `}
+                  >
+                    <span className="text-[10px] font-black text-white/10 font-inter uppercase tracking-[0.5em]">0{idx + 1}</span>
+                    {link.label}
+                  </button>
+                );
+              })}
             </div>
 
             <div className="pt-12 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-6">

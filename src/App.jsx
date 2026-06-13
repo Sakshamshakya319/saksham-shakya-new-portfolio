@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import {
   Mail, ArrowRight,
   ExternalLink, Globe, Palette, ChevronRight,
@@ -53,9 +54,9 @@ const PROJECTS = [
   },
   {
     id: 3,
-    title: "Web Portfolio",
+    title: "Samaparka",
     category: "Frontend",
-    desc: "Immersive 3D portfolio showcasing high-fidelity digital experiences and architectural design.",
+    desc: "Real-Time User Rating System for a University Food Kiosk",
     tags: ["React", "Framer Motion", "Tailwind"],
     icon: Palette,
     link: "#"
@@ -85,28 +86,34 @@ const ACHIEVEMENTS = [
 ];
 
 const App = () => {
-  const [activePage, setActivePage] = useState('home');
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [samarpanSubmitted, setSamarpanSubmitted] = useState(false);
 
+  // Scroll to top when route changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [activePage]);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-obsidian-void text-white font-outfit selection:bg-cyan-accent/30">
       <Background3D />
-      <Navbar activePage={activePage} setActivePage={setActivePage} />
+      <Navbar />
 
       <main className="relative z-10 pt-28 sm:pt-40 pb-20 px-0 overflow-hidden">
         <AnimatePresence mode="wait">
-          {activePage === 'home' && (
-            <motion.div
-              key="home"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="max-w-7xl mx-auto px-4 sm:px-6"
-            >
+          <Routes location={location}>
+            <Route 
+              path="/" 
+              element={
+                <motion.div
+                  key="home"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="max-w-7xl mx-auto px-4 sm:px-6"
+                >
               {/* Hero Section */}
               <section className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh] py-20">
                 <div className="relative z-20">
@@ -147,10 +154,10 @@ const App = () => {
                     transition={{ delay: 0.2 }}
                   >
                     <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                      <GlassButton primary onClick={() => setActivePage('projects')} className="w-full sm:w-auto text-center">
+                      <GlassButton primary onClick={() => navigate('/projects')} className="w-full sm:w-auto text-center">
                         Explore Works
                       </GlassButton>
-                      <GlassButton onClick={() => setActivePage('contact')} className="w-full sm:w-auto text-center">
+                      <GlassButton onClick={() => navigate('/contact')} className="w-full sm:w-auto text-center">
                         Architect Proposal
                       </GlassButton>
                     </div>
@@ -228,7 +235,7 @@ const App = () => {
                     <div className="h-1 w-20 sm:w-24 bg-gradient-to-r from-cyan-accent to-indigo-primary rounded-full" />
                   </div>
                   <button
-                    onClick={() => setActivePage('projects')}
+                    onClick={() => navigate('/projects')}
                     className="text-[10px] font-black tracking-[0.3em] uppercase text-white/40 hover:text-cyan-accent transition-colors flex items-center gap-4"
                   >
                     VIEW FULL ARCHIVE <ChevronRight size={14} />
@@ -319,17 +326,19 @@ const App = () => {
                   </div>
                 </div>
               </section>
-            </motion.div>
-          )}
-
-          {activePage === 'projects' && (
-            <motion.section
-              key="projects"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="max-w-7xl mx-auto py-12 sm:py-20 px-4 sm:px-6"
-            >
+                </motion.div>
+              }
+            />
+            <Route 
+              path="/projects" 
+              element={
+                <motion.section
+                  key="projects"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="max-w-7xl mx-auto py-12 sm:py-20 px-4 sm:px-6"
+                >
               {/* Projects Hero */}
               <div className="text-center mb-20 sm:mb-40">
                 <motion.div
@@ -372,12 +381,10 @@ const App = () => {
                         ))}
                       </div>
                       <div className="flex gap-6">
-                        <GlassButton primary onClick={() => window.open('https://github.com/sakshamshakya319', '_blank')}>
-                          Source Code
+                        <GlassButton primary onClick={() => window.open('https://lpunss.in/', '_blank')}>
+                          Visit
                         </GlassButton>
-                        <GlassButton onClick={() => { }}>
-                          Case Study
-                        </GlassButton>
+                        
                       </div>
                     </div>
                     <div className="relative min-h-[250px] sm:min-h-[500px] bg-gradient-to-br from-indigo-primary/20 to-cyan-accent/20 flex items-center justify-center p-6 sm:p-12 order-1 lg:order-2">
@@ -385,7 +392,7 @@ const App = () => {
                         whileHover={{ scale: 1.05, rotate: 2 }}
                         className="w-full aspect-video bg-obsidian-void rounded-2xl border border-white/10 shadow-2xl overflow-hidden relative group"
                       >
-                        <img src="/saksham.jpg" alt="Featured Project" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
+                        <img src="https://i.ibb.co/xtNq9QvS/Screenshot-2026-06-14-005020.png" alt="Featured Project" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
                         <div className="absolute inset-0 bg-gradient-to-t from-obsidian-void to-transparent opacity-60" />
                       </motion.div>
                     </div>
@@ -460,16 +467,18 @@ const App = () => {
                 </motion.div>
               </div>
             </motion.section>
-          )}
-
-          {activePage === 'about' && (
-            <motion.section
-              key="about"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="max-w-7xl mx-auto py-12 sm:py-20 px-4 sm:px-6"
-            >
+              }
+            />
+            <Route 
+              path="/about" 
+              element={
+                <motion.section
+                  key="about"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="max-w-7xl mx-auto py-12 sm:py-20 px-4 sm:px-6"
+                >
               {/* Story Intro */}
               <div className="grid lg:grid-cols-2 gap-12 sm:gap-20 items-center mb-20 sm:mb-40">
                 <motion.div
@@ -620,22 +629,24 @@ const App = () => {
                   <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-cyan-accent/10 blur-[100px] rounded-full" />
 
                   <h3 className="text-xl sm:text-5xl font-sora font-black tracking-tighter mb-8 leading-tight uppercase px-2">Ready to start the <br className="hidden sm:block" /> next chapter <span className="text-cyan-accent">together?</span></h3>
-                  <GlassButton primary onClick={() => setActivePage('contact')}>
+                  <GlassButton primary onClick={() => navigate('/contact')}>
                     Get In Touch
                   </GlassButton>
                 </div>
               </div>
             </motion.section>
-          )}
-
-          {activePage === 'hire' && (
-            <motion.section 
-              key="hire"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="max-w-7xl mx-auto py-12 sm:py-20 px-4 sm:px-6"
-            >
+              }
+            />
+            <Route 
+              path="/hire" 
+              element={
+                <motion.section 
+                  key="hire"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="max-w-7xl mx-auto py-12 sm:py-20 px-4 sm:px-6"
+                >
               <AnimatePresence mode="wait">
                 {isSubmitted ? (
                   <motion.div
@@ -830,7 +841,7 @@ const App = () => {
                           <h3 className="text-xs font-black tracking-widest text-cyan-accent uppercase mb-8">Contact Nodes</h3>
                           <div className="space-y-8 sm:space-y-12">
                             {[
-                              { icon: Mail, label: 'Primary Email', value: 'sakshamshakya319@gmail.com' },
+                              { icon: Mail, label: 'Primary Email', value: 'sakshamshakya@gmail.com' },
                               { icon: Github, label: 'Open Source', value: 'github.com/saksham' },
                               { icon: Linkedin, label: 'Professional Network', value: 'linkedin.com/in/saksham' }
                             ].map((item, i) => (
@@ -850,16 +861,565 @@ const App = () => {
                 )}
               </AnimatePresence>
             </motion.section>
-          )}
+              }
+            />
+            <Route 
+              path="/samarpan-proposal" 
+              element={
+                <motion.section
+                  key="samarpan"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="max-w-7xl mx-auto py-12 sm:py-20 px-4 sm:px-6"
+                >
+              {/* Hero Section */}
+              <div className="min-h-[80vh] flex flex-col justify-center mb-20 sm:mb-40">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="inline-block px-4 py-1 glass-surface rounded-full text-[10px] font-black tracking-[0.4em] text-cyan-accent uppercase mb-8"
+                >
+                  Samarpan · Blood Donor Connection Platform
+                </motion.div>
+                <h1 className="text-3xl sm:text-6xl lg:text-9xl font-sora font-black tracking-tighter mb-8 uppercase leading-[1.1] sm:leading-[0.8]">
+                  India has enough blood.<br />
+                  People still die because<br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">it doesn't reach them.</span>
+                </h1>
+                <p className="text-white/40 max-w-2xl text-base sm:text-lg font-light leading-relaxed mb-12">
+                  We're building the infrastructure that connects donors, patients, hospitals, and NGOs — in real time, across India's blood deserts. Samarpan is an open, full-stack platform already in active use. We're looking for people who want to solve this with us.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-12">
+                  <GlassButton primary onClick={() => document.getElementById('samarpan-connect')?.scrollIntoView({ behavior: 'smooth' })}>
+                    Share your expertise →
+                  </GlassButton>
+                  <GlassButton onClick={() => document.getElementById('samarpan-roadmap')?.scrollIntoView({ behavior: 'smooth' })}>
+                    See the roadmap
+                  </GlassButton>
+                </div>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 pt-12 border-t border-white/5">
+                  {[
+                    { num: "12K", label: "Lives lost daily to blood shortage" },
+                    { num: "85%", label: "Indian youth aged 18–25 never donated" },
+                    { num: "40%", label: "Of India is a 'blood desert'" },
+                    { num: "14.6M", label: "Units needed annually in India" },
+                  ].map((stat, i) => (
+                    <div key={i}>
+                      <div className="text-2xl sm:text-3xl font-sora font-black text-white mb-2">{stat.num}</div>
+                      <div className="text-[9px] sm:text-[10px] font-bold tracking-widest text-white/30 uppercase">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-          {activePage === 'contact' && (
-            <motion.section
-              key="contact"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              className="max-w-7xl mx-auto py-12 sm:py-20 px-4 sm:px-6"
-            >
+              {/* Crisis Section */}
+              <div id="samarpan-crisis" className="mb-20 sm:mb-40">
+                <div className="flex items-center gap-4 mb-12">
+                  <span className="text-[10px] font-black tracking-[0.4em] text-white/20 uppercase">The Problem</span>
+                  <div className="h-[1px] flex-grow bg-white/10" />
+                </div>
+                <h2 className="text-2xl sm:text-5xl font-sora font-black tracking-tighter mb-4 uppercase leading-[1.1]">
+                  The government says we have enough.<br />
+                  The ground says otherwise.
+                </h2>
+                <p className="text-white/40 max-w-2xl text-base sm:text-lg font-light leading-relaxed mb-12">
+                  In 2024–25, India collected 14.6 million blood units — technically enough. But distribution is broken. Research maps vast "blood deserts" across UP, Bihar, MP, and rural Rajasthan where no blood reaches on time.
+                </p>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+                  {[
+                    { num: "1M+", desc: "Chronic annual shortage even at official estimates — leaving cancer patients, accident victims, and mothers in crisis" },
+                    { num: "2 sec", desc: "Someone in India needs blood every 2 seconds — most have no fast way to find a matching donor nearby" },
+                    { num: "51%", desc: "Of blood banks have component separation — whole blood is still being transfused where plasma, RBC, or platelets would work" },
+                    { num: "4000+", desc: "Rare blood group donors registered nationally — but no consumer app lets patients search or reach them in emergencies" },
+                  ].map((item, i) => (
+                    <GlassCard key={i} delay={i * 0.1}>
+                      <div className="text-3xl font-sora font-black text-red-500 mb-4">{item.num}</div>
+                      <p className="text-white/40 text-sm leading-relaxed">{item.desc}</p>
+                    </GlassCard>
+                  ))}
+                </div>
+                <div className="space-y-4">
+                  <GlassCard className="border-l-4 border-l-red-500">
+                    <p className="text-white/50 text-base leading-relaxed">
+                      <strong className="text-red-400">The real insight:</strong> This is a logistics and community problem, not a supply problem. Blood is collected in cities. People die in districts. No platform today bridges that gap with real-time donor matching, emergency SOS broadcast, or rural-first offline access.
+                    </p>
+                  </GlassCard>
+                  <GlassCard className="border-l-4 border-l-red-500">
+                    <p className="text-white/50 text-base leading-relaxed">
+                      <strong className="text-red-400">Why now:</strong> India just launched a national Rare Donor Registry (RDRI). e-RaktKosh is now being integrated with hospital systems. The government has created the infrastructure layer — but the community and last-mile layer is completely absent. That's the gap Samarpan fills.
+                    </p>
+                  </GlassCard>
+                </div>
+              </div>
+
+              {/* What We've Built Section */}
+              <div id="samarpan-built" className="mb-20 sm:mb-40">
+                <div className="flex items-center gap-4 mb-12">
+                  <span className="text-[10px] font-black tracking-[0.4em] text-white/20 uppercase">What We've Built</span>
+                  <div className="h-[1px] flex-grow bg-white/10" />
+                </div>
+                <h2 className="text-2xl sm:text-5xl font-sora font-black tracking-tighter mb-4 uppercase leading-[1.1]">
+                  A full-stack platform already in use
+                </h2>
+                <p className="text-white/40 max-w-2xl text-base sm:text-lg font-light leading-relaxed mb-12">
+                  Built with Next.js, MongoDB, TypeScript, and deployed on Vercel. Not a concept — a working system with real admin panels, donor flows, event management, and QR-based attendance.
+                </p>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {[
+                    { icon: "🩸", title: "Donor & Patient Portal", desc: "Registration, blood request creation with priority levels, real-time notifications, and donation history tracking" },
+                    { icon: "🎟️", title: "Certificate Generation", desc: "Automatic, downloadable donor certificates with PDF generation — building recognition and encouraging repeat donation" },
+                    { icon: "📋", title: "NGO Admin Panel", desc: "Full event management, donor lists, QR check-in scanning, blood test result updates, and bulk notifications" },
+                    { icon: "📱", title: "Mobile-First Design", desc: "Adaptive layouts — card view on mobile, table view on desktop. Touch-optimized forms and dialogs for field workers" },
+                    { icon: "🔒", title: "Production Security", desc: "Rate limiting, CSRF protection, XSS headers, Cloudflare WAF, audit logging, and Sanctum API security" },
+                    { icon: "🌐", title: "Maintenance Infrastructure", desc: "Professional maintenance mode with route protection, priority levels, IP whitelisting, and real-time monitoring" },
+                  ].map((item, i) => (
+                    <GlassCard key={i} delay={i * 0.1}>
+                      <div className="text-4xl mb-6">{item.icon}</div>
+                      <h3 className="text-xl font-sora font-bold mb-4">{item.title}</h3>
+                      <p className="text-white/40 text-sm leading-relaxed">{item.desc}</p>
+                    </GlassCard>
+                  ))}
+                </div>
+              </div>
+
+              {/* Roadmap Section */}
+              <div id="samarpan-roadmap" className="mb-20 sm:mb-40">
+                <div className="flex items-center gap-4 mb-12">
+                  <span className="text-[10px] font-black tracking-[0.4em] text-white/20 uppercase">What We Want To Build Next</span>
+                  <div className="h-[1px] flex-grow bg-white/10" />
+                </div>
+                <h2 className="text-2xl sm:text-5xl font-sora font-black tracking-tighter mb-4 uppercase leading-[1.1]">
+                  8 features that make this<br />
+                  genuinely life-saving
+                </h2>
+                <p className="text-white/40 max-w-2xl text-base sm:text-lg font-light leading-relaxed mb-12">
+                  Prioritized by real-world impact. These aren't nice-to-haves — each one directly closes a gap that currently costs lives.
+                </p>
+                <div className="space-y-6 mb-16">
+                  {[
+                    {
+                      num: "01",
+                      title: "Emergency SOS blood request broadcast",
+                      desc: "One-tap broadcast to all matching donors within a radius via WhatsApp, SMS, and push. The donor can accept in one click. This is the Uber-for-blood moment — and no Indian platform has built it yet.",
+                      tags: ["WhatsApp Business API", "Twilio SMS", "Geofenced radius", "Accept/decline flow"],
+                      priority: "CRITICAL"
+                    },
+                    {
+                      num: "02",
+                      title: "Real-time hospital blood inventory API",
+                      desc: "Connect with nearby hospitals and blood banks to show live per-group stock. Integrate with e-RaktKosh at the district level. What eRaktKosh shows at the blood-bank level — Samarpan shows at the patient's doorstep.",
+                      tags: ["eRaktKosh API", "Hospital webhooks", "Live inventory maps"],
+                      priority: "CRITICAL"
+                    },
+                    {
+                      num: "03",
+                      title: "Donor gamification & loyalty system",
+                      desc: "Points, streaks, 'Hero Donor' badges, leaderboards. Local partner perks — free health check-ups, discount coupons. This directly attacks the 85.5% non-donation rate among Indian youth aged 18–25.",
+                      tags: ["Gamification engine", "Partner perks API", "Social leaderboards", "Health screening integration"],
+                      priority: "HIGH"
+                    },
+                    {
+                      num: "04",
+                      title: "Rare blood group registry",
+                      desc: "India's RDRI has 4000+ rare donors — but zero consumer access. Build a verified rare donor module (Bombay blood group, rh-null, negative types) with extra privacy protections. A unique, defensible niche.",
+                      tags: ["Voluntary enrollment", "Privacy consent layer", "RDRI integration potential"],
+                      priority: "HIGH"
+                    },
+                    {
+                      num: "05",
+                      title: "Blood component differentiation",
+                      desc: "Track platelets, plasma, RBCs, and FFP separately. Thalassemia and cancer patients need platelets every 10–14 days. This unlocks clinical hospital partnerships and makes Samarpan the only NGO platform with clinical-grade blood management.",
+                      tags: ["Platelets / RBC / Plasma", "Apheresis scheduling", "Oncology ward matching"],
+                      priority: "HIGH"
+                    },
+                    {
+                      num: "06",
+                      title: "Offline-first PWA for rural India",
+                      desc: "Blood deserts exist where 4G doesn't. A Progressive Web App that caches donor lists, works on 2G/edge, and syncs when connected — with Hindi and regional language UI. This unlocks UP, Bihar, MP, Jharkhand: where deaths actually happen.",
+                      tags: ["Service Workers", "IndexedDB cache", "Background sync", "Hindi UI"],
+                      priority: "HIGH"
+                    },
+                    {
+                      num: "07",
+                      title: "NGO network marketplace",
+                      desc: "Let other NGOs onboard Samarpan as their blood camp management system. Become the Shopify for blood donation organizations. White-label panels, federated donor pools, shared event discovery. Scalable revenue through SaaS per NGO.",
+                      tags: ["Multi-tenant architecture", "White-label branding", "Shared donor API"],
+                      priority: "MEDIUM"
+                    },
+                    {
+                      num: "08",
+                      title: "AI donor eligibility pre-screener",
+                      desc: "An AI chatbot that checks WHO eligibility criteria before a donor travels to camp — reducing wasted trips, building trust. Collects anonymized health data that makes Samarpan's dataset uniquely valuable to researchers and funders.",
+                      tags: ["WHO eligibility criteria", "Symptom checker", "Hemoglobin self-test prompts"],
+                      priority: "MEDIUM"
+                    },
+                  ].map((item, i) => (
+                    <GlassCard key={i} delay={i * 0.1} className="group">
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="text-4xl font-sora font-black text-white/10 flex-shrink-0">{item.num}</div>
+                        <div className="flex-1">
+                          <div className="flex flex-wrap items-center gap-4 mb-4">
+                            <h3 className="text-xl font-sora font-bold group-hover:text-cyan-accent transition-colors">{item.title}</h3>
+                            <span className={`
+                              px-3 py-1 rounded-full text-[8px] font-black tracking-widest uppercase
+                              ${item.priority === "CRITICAL" ? "bg-red-500/20 text-red-400" : 
+                                item.priority === "HIGH" ? "bg-yellow-500/20 text-yellow-400" : 
+                                "bg-blue-500/20 text-blue-400"}
+                            `}>{item.priority}</span>
+                          </div>
+                          <p className="text-white/40 text-sm leading-relaxed mb-4">{item.desc}</p>
+                          <div className="flex flex-wrap gap-2">
+                            {item.tags.map((tag, j) => (
+                              <span key={j} className="px-3 py-1 glass-surface rounded-full text-[8px] font-bold text-white/30 uppercase tracking-wider">{tag}</span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </GlassCard>
+                  ))}
+                </div>
+                {/* Timeline */}
+                <h3 className="text-lg sm:text-xl font-sora font-black mb-12 uppercase tracking-widest">Build Phases</h3>
+                <div className="relative pl-8 space-y-12 border-l border-white/10 ml-2">
+                  {[
+                    {
+                      phase: "Phase 1 · 0–3 months",
+                      title: "Complete the core loop",
+                      desc: "Make Samarpan genuinely life-saving in emergencies — not just a donor directory. Proof metric: average time from SOS to donor acceptance.",
+                      items: ["Emergency SOS broadcast", "WhatsApp integration", "Blood component differentiation"],
+                      color: "text-green-500",
+                      bg: "bg-green-500"
+                    },
+                    {
+                      phase: "Phase 2 · 3–9 months",
+                      title: "Own the supply side",
+                      desc: "Grow and retain the donor base while becoming indispensable to hospitals. KPI: repeat donation rate, monthly active donors, hospital integrations live.",
+                      items: ["Donor gamification", "Rare blood registry", "Hospital inventory API"],
+                      color: "text-yellow-500",
+                      bg: "bg-yellow-500"
+                    },
+                    {
+                      phase: "Phase 3 · 9–18 months",
+                      title: "Scale across India",
+                      desc: "Become the infrastructure other NGOs run on. Target: 10+ NGOs onboarded, 5+ states covered, CSR / impact investment round.",
+                      items: ["Offline PWA", "NGO marketplace", "Hindi + regional languages", "AI eligibility screener"],
+                      color: "text-red-500",
+                      bg: "bg-red-500"
+                    },
+                  ].map((item, i) => (
+                    <div key={i} className="relative">
+                      <div className={`absolute -left-[41px] top-2 w-4 h-4 rounded-full border-4 border-obsidian-void ${item.bg}`} />
+                      <div className="text-[10px] font-black tracking-widest uppercase text-white/30 mb-2">{item.phase}</div>
+                      <h4 className="text-xl font-sora font-bold mb-4">{item.title}</h4>
+                      <p className="text-white/40 text-sm leading-relaxed mb-6">{item.desc}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {item.items.map((tag, j) => (
+                          <span key={j} className="px-4 py-2 glass-surface rounded-full text-xs font-bold text-white/50">{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Competitor Table */}
+              <div className="mb-20 sm:mb-40">
+                <div className="flex items-center gap-4 mb-12">
+                  <span className="text-[10px] font-black tracking-[0.4em] text-white/20 uppercase">Landscape</span>
+                  <div className="h-[1px] flex-grow bg-white/10" />
+                </div>
+                <h2 className="text-2xl sm:text-5xl font-sora font-black tracking-tighter mb-4 uppercase leading-[1.1]">
+                  Where Samarpan fits
+                </h2>
+                <p className="text-white/40 max-w-2xl text-base sm:text-lg font-light leading-relaxed mb-12">
+                  No other platform does what Samarpan does — end-to-end NGO blood management with a donor-facing community layer.
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-white/10">
+                        <th className="text-left py-4 px-4 text-[10px] font-black tracking-widest text-white/40 uppercase">Platform</th>
+                        <th className="text-left py-4 px-4 text-[10px] font-black tracking-widest text-white/40 uppercase">Emergency SOS</th>
+                        <th className="text-left py-4 px-4 text-[10px] font-black tracking-widest text-white/40 uppercase">NGO Admin</th>
+                        <th className="text-left py-4 px-4 text-[10px] font-black tracking-widest text-white/40 uppercase">Certificates</th>
+                        <th className="text-left py-4 px-4 text-[10px] font-black tracking-widest text-white/40 uppercase">Rare Blood</th>
+                        <th className="text-left py-4 px-4 text-[10px] font-black tracking-widest text-white/40 uppercase">Events</th>
+                        <th className="text-left py-4 px-4 text-[10px] font-black tracking-widest text-white/40 uppercase">Open Source</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-white/5 bg-red-500/5">
+                        <td className="py-4 px-4 font-bold text-white">Samarpan ← us</td>
+                        <td className="py-4 px-4 text-yellow-400">Building</td>
+                        <td className="py-4 px-4 text-green-400">✓ Full</td>
+                        <td className="py-4 px-4 text-green-400">✓ Auto</td>
+                        <td className="py-4 px-4 text-yellow-400">Building</td>
+                        <td className="py-4 px-4 text-green-400">✓ Full</td>
+                        <td className="py-4 px-4 text-green-400">✓ Yes</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-4 px-4 text-white/60">e-RaktKosh (Govt)</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-4 px-4 text-white/60">Simply Blood</td>
+                        <td className="py-4 px-4 text-yellow-400">Partial</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-4 px-4 text-white/60">ModFx Labs</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                      </tr>
+                      <tr>
+                        <td className="py-4 px-4 text-white/60">Circulate</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">Partial</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                        <td className="py-4 px-4 text-white/30">✗</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Who We're Looking For */}
+              <div className="mb-20 sm:mb-40">
+                <div className="flex items-center gap-4 mb-12">
+                  <span className="text-[10px] font-black tracking-[0.4em] text-white/20 uppercase">Who We're Looking For</span>
+                  <div className="h-[1px] flex-grow bg-white/10" />
+                </div>
+                <h2 className="text-2xl sm:text-5xl font-sora font-black tracking-tighter mb-4 uppercase leading-[1.1]">
+                  Help us build this.<br />
+                  Any way you can.
+                </h2>
+                <p className="text-white/40 max-w-2xl text-base sm:text-lg font-light leading-relaxed mb-12">
+                  We're not asking for funding — yet. We're asking for knowledge, connections, and perspective. If you know something that would make Samarpan better, we want to hear it.
+                </p>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {[
+                    { role: "Healthcare professionals", desc: "Doctors, transfusion medicine specialists, hospital administrators who can advise on clinical workflows, blood component protocols, and hospital integration priorities" },
+                    { role: "NGO / social sector leaders", desc: "Blood camp organizers, NSS/NCC coordinators, and health NGO founders who can share on-ground realities and potentially pilot Samarpan in their networks" },
+                    { role: "Tech contributors", desc: "Full-stack developers, mobile devs (React Native), WhatsApp API developers, PWA specialists, and anyone who wants to contribute open source code" },
+                    { role: "Impact investors & CSR teams", desc: "Organizations aligned with healthcare access, particularly those funding health tech in tier-2/3 India. We're building toward a fundable Phase 3." },
+                    { role: "Researchers & policy advisors", desc: "Public health researchers, policy advisors working with NHM or state health departments who can help us position Samarpan as a government-compatible layer" },
+                    { role: "Product & UX designers", desc: "Designers who've worked on health or civic products in India — especially with rural or low-digital-literacy user bases in mind" },
+                  ].map((item, i) => (
+                    <GlassCard key={i} delay={i * 0.1} className="group relative overflow-hidden">
+                      <div className="absolute -top-10 -right-10 w-32 h-32 bg-red-500/10 blur-3xl rounded-full" />
+                      <h3 className="text-lg font-sora font-bold mb-4 group-hover:text-red-400 transition-colors">{item.role}</h3>
+                      <p className="text-white/40 text-sm leading-relaxed">{item.desc}</p>
+                    </GlassCard>
+                  ))}
+                </div>
+              </div>
+
+              {/* Connect Form */}
+              <div id="samarpan-connect">
+                <div className="text-center mb-16">
+                  <div className="inline-block px-4 py-1 glass-surface rounded-full text-[10px] font-black tracking-[0.4em] text-white/30 uppercase mb-8">
+                    Get Involved
+                  </div>
+                  <h2 className="text-3xl sm:text-6xl font-sora font-black tracking-tighter mb-8 uppercase leading-[1.1]">
+                    Have a thought?<br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">Tell us directly.</span>
+                  </h2>
+                  <p className="text-white/40 max-w-2xl mx-auto text-base sm:text-lg font-light leading-relaxed">
+                    A suggestion, a connection, a critique, an offer to help. All of it is welcome. We read every message.
+                  </p>
+                </div>
+                <AnimatePresence mode="wait">
+                  {samarpanSubmitted ? (
+                    <motion.div
+                      key="success-samarpan"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      className="h-full min-h-[500px] sm:min-h-[600px] flex items-center justify-center"
+                    >
+                      <GlassCard className="w-full max-w-2xl p-8 sm:p-20 border-red-500/20 text-center relative overflow-hidden flex flex-col items-center justify-center min-h-[450px] sm:min-h-[500px]">
+                        <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-transparent to-transparent" />
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-red-500/5 blur-[120px] rounded-full animate-pulse" />
+                        <motion.div
+                          initial={{ rotate: -180, scale: 0 }}
+                          animate={{ rotate: 0, scale: 1 }}
+                          transition={{ type: "spring", stiffness: 100, damping: 10 }}
+                          className="relative z-10 mb-12"
+                        >
+                          <div className="w-32 h-32 rounded-3xl bg-gradient-to-br from-red-500 to-red-400 p-[2px]">
+                            <div className="w-full h-full bg-obsidian-void rounded-[22px] flex items-center justify-center">
+                              <Heart className="text-red-500" size={48} />
+                            </div>
+                          </div>
+                          <div className="absolute inset-0 border border-red-500/20 rounded-3xl -m-4 animate-ping" />
+                          <div className="absolute inset-0 border border-red-500/10 rounded-3xl -m-8 animate-pulse" />
+                        </motion.div>
+                        <h3 className="text-3xl sm:text-5xl font-sora font-black mb-6 tracking-tighter relative z-10 uppercase">
+                          Message <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">Received.</span>
+                        </h3>
+                        <p className="text-white/40 text-base sm:text-lg max-w-sm mb-12 font-light leading-relaxed relative z-10 px-4">
+                          Thank you — we'll be in touch soon. Your input genuinely matters to how Samarpan gets built.
+                        </p>
+                        <div className="w-64 space-y-4 relative z-10">
+                          <div className="flex justify-between text-[10px] font-black tracking-widest text-white/20 uppercase mb-2">
+                            <span>Redirection</span>
+                            <span>3.0s</span>
+                          </div>
+                          <div className="h-[2px] w-full bg-white/5 rounded-full overflow-hidden">
+                            <motion.div
+                              initial={{ width: "0%" }}
+                              animate={{ width: "100%" }}
+                              transition={{ duration: 3, ease: "linear" }}
+                              className="h-full bg-gradient-to-r from-red-500 to-red-400"
+                            />
+                          </div>
+                        </div>
+                      </GlassCard>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="form-samarpan"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      <GlassCard className="p-6 sm:p-16 border-white/10 relative overflow-hidden max-w-3xl mx-auto">
+                        <div className="absolute top-0 right-0 w-40 h-40 bg-red-500/5 blur-[80px] rounded-full" />
+                        <form
+                          onSubmit={async (e) => {
+                            e.preventDefault();
+                            const formData = new FormData(e.target);
+                            formData.append("access_key", "731279f7-bd59-47d9-994c-588812547ecb");
+                            formData.append("subject", "Samarpan Collaboration Inquiry");
+                            try {
+                              const response = await fetch("https://api.web3forms.com/submit", {
+                                method: "POST",
+                                body: formData
+                              });
+                              if (response.ok) {
+                                setSamarpanSubmitted(true);
+                                setTimeout(() => {
+                                  setSamarpanSubmitted(false);
+                                }, 3000);
+                              }
+                            } catch (error) {
+                              console.error("Samarpan Form Error:", error);
+                            }
+                          }}
+                          className="space-y-8 relative z-10"
+                        >
+                          <div className="grid sm:grid-cols-2 gap-8">
+                            <div className="space-y-4">
+                              <label className="text-[10px] font-black tracking-widest text-white/40 uppercase ml-1">Your Name</label>
+                              <input
+                                type="text"
+                                name="name"
+                                required
+                                placeholder="Riya Sharma"
+                                className="w-full px-6 py-4 glass-surface rounded-xl border border-white/5 focus:border-red-500/50 outline-none transition-all text-sm"
+                              />
+                            </div>
+                            <div className="space-y-4">
+                              <label className="text-[10px] font-black tracking-widest text-white/40 uppercase ml-1">Email</label>
+                              <input
+                                type="email"
+                                name="email"
+                                required
+                                placeholder="riya@example.com"
+                                className="w-full px-6 py-4 glass-surface rounded-xl border border-white/5 focus:border-red-500/50 outline-none transition-all text-sm"
+                              />
+                            </div>
+                          </div>
+                          <div className="grid sm:grid-cols-2 gap-8">
+                            <div className="space-y-4">
+                              <label className="text-[10px] font-black tracking-widest text-white/40 uppercase ml-1">Your Background</label>
+                              <select
+                                name="background"
+                                className="w-full px-6 py-4 glass-surface rounded-xl border border-white/5 focus:border-red-500/50 outline-none transition-all text-sm text-white/70"
+                              >
+                                <option value="">Select one</option>
+                                <option>Healthcare professional</option>
+                                <option>NGO / Social sector</option>
+                                <option>Software developer</option>
+                                <option>Impact investor / CSR</option>
+                                <option>Researcher / Policy</option>
+                                <option>UX / Product designer</option>
+                                <option>Student</option>
+                                <option>Other</option>
+                              </select>
+                            </div>
+                            <div className="space-y-4">
+                              <label className="text-[10px] font-black tracking-widest text-white/40 uppercase ml-1">How You'd Like To Help</label>
+                              <select
+                                name="help_type"
+                                className="w-full px-6 py-4 glass-surface rounded-xl border border-white/5 focus:border-red-500/50 outline-none transition-all text-sm text-white/70"
+                              >
+                                <option value="">Select one</option>
+                                <option>Advise on a specific feature</option>
+                                <option>Contribute code / design</option>
+                                <option>Connect us with someone</option>
+                                <option>Pilot with my organization</option>
+                                <option>Discuss funding / grant</option>
+                                <option>Just share feedback</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div className="space-y-4">
+                            <label className="text-[10px] font-black tracking-widest text-white/40 uppercase ml-1">Your Message or Suggestion</label>
+                            <textarea
+                              name="message"
+                              required
+                              rows="6"
+                              placeholder="What do you think we should prioritize? What have you seen work in similar spaces? What are we missing?"
+                              className="w-full px-6 py-4 glass-surface rounded-xl border border-white/5 focus:border-red-500/50 outline-none transition-all text-sm resize-none"
+                            />
+                          </div>
+                          <div className="pt-4">
+                            <button
+                              type="submit"
+                              className="w-full py-5 bg-gradient-to-r from-red-500 to-red-400 rounded-xl font-sora font-black text-xs uppercase tracking-[0.3em] hover:shadow-[0_20px_40px_rgba(239,68,68,0.3)] transition-all active:scale-95"
+                            >
+                              Send Message →
+                            </button>
+                          </div>
+                          <p className="text-center text-white/20 text-[10px] font-bold tracking-widest">
+                            No spam. No newsletters. Just a conversation about saving lives.
+                          </p>
+                        </form>
+                      </GlassCard>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.section>
+              }
+            />
+            <Route 
+              path="/contact" 
+              element={
+                <motion.section
+                  key="contact"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  className="max-w-7xl mx-auto py-12 sm:py-20 px-4 sm:px-6"
+                >
               <div className="grid lg:grid-cols-2 gap-12 sm:gap-20">
                 {/* Contact Info */}
                 <div>
@@ -881,7 +1441,7 @@ const App = () => {
                         </div>
                         <div className="min-w-0 flex-1">
                           <div className="text-[9px] sm:text-[10px] font-black tracking-[0.3em] text-white/20 uppercase mb-1">Direct Email</div>
-                          <a href="mailto:sakshamshakya319@gmail.com" className="text-lg sm:text-xl font-bold hover:text-cyan-accent transition-colors block truncate">sakshamshakya319@gmail.com</a>
+                          <a href="mailto:sakshamshakya@gmail.com" className="text-lg sm:text-xl font-bold hover:text-cyan-accent transition-colors block truncate">sakshamshakya@gmail.com</a>
                         </div>
                       </div>
 
@@ -992,7 +1552,7 @@ const App = () => {
                                   setIsSubmitted(true);
                                   setTimeout(() => {
                                     setIsSubmitted(false);
-                                    setActivePage('home');
+                                    navigate('/');
                                   }, 3000);
                                 }
                               } catch (error) {
@@ -1062,7 +1622,9 @@ const App = () => {
                 </motion.div>
               </div>
             </motion.section>
-          )}
+              }
+            />
+          </Routes>
         </AnimatePresence>
       </main>
 
@@ -1072,9 +1634,9 @@ const App = () => {
             © 2026 SAKSHAM SHAKYA · DIGITAL ARCHITECT
           </div>
           <div className="flex gap-10">
-            <button onClick={() => setActivePage('about')} className="text-white/20 hover:text-white text-[10px] font-black transition-colors uppercase tracking-[0.2em]">Story</button>
-            <button onClick={() => setActivePage('projects')} className="text-white/20 hover:text-white text-[10px] font-black transition-colors uppercase tracking-[0.2em]">Archive</button>
-            <button onClick={() => setActivePage('contact')} className="text-white/20 hover:text-white text-[10px] font-black transition-colors uppercase tracking-[0.2em]">Contact</button>
+            <button onClick={() => navigate('/about')} className="text-white/20 hover:text-white text-[10px] font-black transition-colors uppercase tracking-[0.2em]">Story</button>
+            <button onClick={() => navigate('/projects')} className="text-white/20 hover:text-white text-[10px] font-black transition-colors uppercase tracking-[0.2em]">Archive</button>
+            <button onClick={() => navigate('/contact')} className="text-white/20 hover:text-white text-[10px] font-black transition-colors uppercase tracking-[0.2em]">Contact</button>
           </div>
         </div>
       </footer>
