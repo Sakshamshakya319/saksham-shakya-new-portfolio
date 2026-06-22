@@ -5,7 +5,9 @@ import {
   Mail, ArrowRight,
   ExternalLink, Globe, Palette, ChevronRight,
   Sparkles, Layers, Box, Terminal, Code2, Rocket,
-  Award, Heart, GraduationCap, MapPin
+  Award, Heart, GraduationCap, MapPin,
+  Brain, Zap, Activity, Clock, Languages, WifiOff, AlertCircle,
+  TrendingUp, Shield, Target, MessageSquare, Users, Database
 } from 'lucide-react';
 
 // Brand icons removed from lucide-react v1.x — using inline SVG components instead
@@ -878,24 +880,25 @@ const App = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="inline-block px-4 py-1 glass-surface rounded-full text-[10px] font-black tracking-[0.4em] text-cyan-accent uppercase mb-8"
+                  className="inline-flex items-center gap-2 px-4 py-1 glass-surface rounded-full text-[10px] font-black tracking-[0.4em] text-cyan-accent uppercase mb-8"
                 >
-                  Samarpan · Blood Donor Connection Platform
+                  <Brain size={14} className="animate-pulse" />
+                  Samarpan · AI-Powered Blood Donor Connection Platform
                 </motion.div>
                 <h1 className="text-3xl sm:text-6xl lg:text-9xl font-sora font-black tracking-tighter mb-8 uppercase leading-[1.1] sm:leading-[0.8]">
-                  India has enough blood.<br />
-                  People still die because<br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">it doesn't reach them.</span>
+                  Connect Donors.<br />
+                  Save Lives.<br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-accent to-indigo-primary">Predict Needs.</span>
                 </h1>
                 <p className="text-white/40 max-w-2xl text-base sm:text-lg font-light leading-relaxed mb-12">
-                  We're building the infrastructure that connects donors, patients, hospitals, and NGOs — in real time, across India's blood deserts. Samarpan is an open, full-stack platform already in active use. We're looking for people who want to solve this with us.
+                  Samarpan is a next-generation blood donation and emergency response platform designed to connect donors, patients, hospitals, blood banks, and NGOs through real-time technology and intelligent matching. Built to solve the last-mile problem in blood accessibility, Samarpan combines modern web technologies with upcoming AI-powered decision systems to reduce response times and improve blood request fulfillment.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-12">
-                  <GlassButton primary onClick={() => document.getElementById('samarpan-connect')?.scrollIntoView({ behavior: 'smooth' })}>
-                    Share your expertise →
+                  <GlassButton primary onClick={() => document.getElementById('samarpan-ai-features')?.scrollIntoView({ behavior: 'smooth' })}>
+                    Explore AI Features →
                   </GlassButton>
-                  <GlassButton onClick={() => document.getElementById('samarpan-roadmap')?.scrollIntoView({ behavior: 'smooth' })}>
-                    See the roadmap
+                  <GlassButton onClick={() => document.getElementById('samarpan-connect')?.scrollIntoView({ behavior: 'smooth' })}>
+                    Share your expertise
                   </GlassButton>
                 </div>
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 pt-12 border-t border-white/5">
@@ -911,6 +914,87 @@ const App = () => {
                     </div>
                   ))}
                 </div>
+              </div>
+
+              {/* Introducing Samarpan AI Section */}
+              <div id="samarpan-ai-intro" className="mb-20 sm:mb-40">
+                <div className="flex items-center gap-4 mb-12">
+                  <div className="p-3 glass-surface rounded-xl text-cyan-accent">
+                    <Brain size={20} />
+                  </div>
+                  <div className="flex items-center gap-4 mb-12">
+                    <span className="text-[10px] font-black tracking-[0.4em] text-white/20 uppercase">The Next Evolution</span>
+                    <div className="h-[1px] flex-grow bg-white/10" />
+                  </div>
+                </div>
+                <h2 className="text-2xl sm:text-5xl font-sora font-black tracking-tighter mb-4 uppercase leading-[1.1]">
+                  Introducing <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-accent to-indigo-primary">Samarpan AI</span>
+                </h2>
+                <p className="text-white/40 max-w-2xl text-base sm:text-lg font-light leading-relaxed mb-12">
+                  Most blood donation platforms operate as donor directories. Samarpan AI is being designed as an intelligent emergency response system powered by Large Language Models (LLMs) and predictive analytics. The goal is simple: Connect the right donor to the right patient at the right time.
+                </p>
+                <GlassCard className="p-8 sm:p-12 border-cyan-accent/30 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-60 h-60 bg-cyan-accent/10 blur-[100px] rounded-full" />
+                  <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center">
+                    <div className="space-y-6">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-accent to-indigo-primary flex items-center justify-center">
+                          <Zap size={24} className="text-obsidian-void" />
+                        </div>
+                        <div>
+                          <div className="text-sm font-bold">Intelligent Matching</div>
+                          <div className="text-[10px] text-white/40 uppercase tracking-widest">Not just blood type</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-accent to-indigo-primary flex items-center justify-center">
+                          <Activity size={24} className="text-obsidian-void" />
+                        </div>
+                        <div>
+                          <div className="text-sm font-bold">Predictive Analytics</div>
+                          <div className="text-[10px] text-white/40 uppercase tracking-widest">Forecast shortages</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-accent to-indigo-primary flex items-center justify-center">
+                          <MessageSquare size={24} className="text-obsidian-void" />
+                        </div>
+                        <div>
+                          <div className="text-sm font-bold">LLM Assistant</div>
+                          <div className="text-[10px] text-white/40 uppercase tracking-widest">Natural language requests</div>
+                        </div>
+                      </div>
+                    </div>
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.2 }}
+                      className="p-6 glass-surface rounded-2xl border border-white/10"
+                    >
+                      <div className="text-[10px] font-black tracking-widest text-white/30 uppercase mb-4">EXAMPLE INTERACTION</div>
+                      <div className="space-y-4">
+                        <div className="p-4 glass-surface rounded-xl">
+                          <div className="text-[10px] text-white/30 uppercase tracking-widest mb-2">USER INPUT</div>
+                          <div className="text-sm text-white/70">
+                            "Need A+ blood urgently for my father at Civil Hospital Jalandhar"
+                          </div>
+                        </div>
+                        <div className="flex justify-center">
+                          <ArrowRight size={20} className="text-cyan-accent" />
+                        </div>
+                        <div className="p-4 glass-surface rounded-xl border-cyan-accent/30">
+                          <div className="text-[10px] text-cyan-accent uppercase tracking-widest mb-2">AI OUTPUT</div>
+                          <div className="text-sm text-white/70 space-y-1">
+                            <div>• Blood Group: A+</div>
+                            <div>• Priority: Critical</div>
+                            <div>• Location: Civil Hospital Jalandhar</div>
+                            <div>• Requirement Type: Emergency</div>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </GlassCard>
               </div>
 
               {/* Crisis Section */}
@@ -977,6 +1061,92 @@ const App = () => {
                     <GlassCard key={i} delay={i * 0.1}>
                       <div className="text-4xl mb-6">{item.icon}</div>
                       <h3 className="text-xl font-sora font-bold mb-4">{item.title}</h3>
+                      <p className="text-white/40 text-sm leading-relaxed">{item.desc}</p>
+                    </GlassCard>
+                  ))}
+                </div>
+              </div>
+
+              {/* Upcoming AI Features Section */}
+              <div id="samarpan-ai-features" className="mb-20 sm:mb-40">
+                <div className="flex items-center gap-4 mb-12">
+                  <span className="text-[10px] font-black tracking-[0.4em] text-white/20 uppercase">Upcoming AI Features</span>
+                  <div className="h-[1px] flex-grow bg-white/10" />
+                </div>
+                <h2 className="text-2xl sm:text-5xl font-sora font-black tracking-tighter mb-4 uppercase leading-[1.1]">
+                  Powering the future of <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-accent to-indigo-primary">blood donation</span>
+                </h2>
+                <p className="text-white/40 max-w-2xl text-base sm:text-lg font-light leading-relaxed mb-12">
+                  Every AI feature is designed to directly reduce response times, improve donor engagement, and save more lives.
+                </p>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {[
+                    { 
+                      icon: Target, 
+                      title: "Smart Donor Matching Engine", 
+                      desc: "Traditional systems match based on blood type. Samarpan AI considers eligibility, response history, geographic proximity, availability patterns, previous participation, and urgency level to identify donors most likely to respond successfully.",
+                      color: "from-cyan-accent to-indigo-primary"
+                    },
+                    { 
+                      icon: TrendingUp, 
+                      title: "AI Donor Scoring", 
+                      desc: "Every donor receives a dynamic engagement score based on response rate, donation frequency, activity level, eligibility status, and recent participation to prioritize outreach during emergencies.",
+                      color: "from-cyan-accent to-indigo-primary"
+                    },
+                    { 
+                      icon: Shield, 
+                      title: "Donor Fatigue Detection", 
+                      desc: "To prevent donor burnout, the AI engine detects over-contacted donors, monitors notification frequency, rotates outreach intelligently, and improves long-term donor retention.",
+                      color: "from-cyan-accent to-indigo-primary"
+                    },
+                    { 
+                      icon: Clock, 
+                      title: "Intelligent Notification Timing", 
+                      desc: "Instead of sending notifications immediately to everyone, Samarpan AI determines the best delivery time, most effective communication channel, and highest probability responders to increase donor response rates while reducing notification fatigue.",
+                      color: "from-cyan-accent to-indigo-primary"
+                    },
+                    { 
+                      icon: MessageSquare, 
+                      title: "AI Blood Request Assistant", 
+                      desc: "An LLM-powered assistant helps patients and volunteers create accurate blood requests with natural language request creation, missing information detection, urgency classification, structured request generation, and multi-language support.",
+                      color: "from-cyan-accent to-indigo-primary"
+                    },
+                    { 
+                      icon: Activity, 
+                      title: "Blood Shortage Prediction", 
+                      desc: "Samarpan AI analyzes historical and live request data to predict upcoming shortages, identify vulnerable districts, forecast demand spikes, and assist NGO planning.",
+                      color: "from-cyan-accent to-indigo-primary"
+                    },
+                    { 
+                      icon: AlertCircle, 
+                      title: "Rare Blood Group Intelligence", 
+                      desc: "Upcoming support for O-, AB-, Bombay Blood Group, and other rare donor categories with early shortage alerts, verified donor pools, emergency escalation workflows, and intelligent donor activation.",
+                      color: "from-red-500 to-red-400"
+                    },
+                    { 
+                      icon: Users, 
+                      title: "Lives Impact Dashboard", 
+                      desc: "Real-time impact tracking including requests fulfilled, donors activated, emergency response rate, rare blood matches, and estimated lives impacted.",
+                      color: "from-cyan-accent to-indigo-primary"
+                    },
+                    { 
+                      icon: Languages, 
+                      title: "Multilingual AI Support", 
+                      desc: "To increase accessibility across India with Hindi, Punjabi, English, and regional language expansion. Users can interact with Samarpan using natural language.",
+                      color: "from-cyan-accent to-indigo-primary"
+                    },
+                    { 
+                      icon: WifiOff, 
+                      title: "Offline AI-Ready Rural Access", 
+                      desc: "Future PWA capabilities include offline request creation, local donor caching, background synchronization, and low-bandwidth optimization designed specifically for rural and underserved regions.",
+                      color: "from-cyan-accent to-indigo-primary"
+                    }
+                  ].map((item, i) => (
+                    <GlassCard key={i} delay={i * 0.1} className="group">
+                      <div className={`p-4 rounded-2xl bg-gradient-to-br ${item.color} mb-6 group-hover:scale-110 transition-transform duration-500 w-fit`}>
+                        <item.icon size={24} className="text-obsidian-void" />
+                      </div>
+                      <h3 className="text-xl font-sora font-bold mb-4 group-hover:text-cyan-accent transition-colors">{item.title}</h3>
                       <p className="text-white/40 text-sm leading-relaxed">{item.desc}</p>
                     </GlassCard>
                   ))}
@@ -1078,6 +1248,52 @@ const App = () => {
                       </div>
                     </GlassCard>
                   ))}
+                </div>
+                {/* AI Roadmap */}
+                <div className="mb-16">
+                  <h3 className="text-lg sm:text-xl font-sora font-black mb-12 uppercase tracking-widest">
+                    <span className="text-cyan-accent">AI</span> Roadmap
+                  </h3>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    {[
+                      {
+                        phase: "Phase 1 · 2–3 Weeks",
+                        title: "Smart Matching Engine",
+                        desc: "Improve emergency response success rates",
+                        items: ["AI Donor Scoring", "Donor Fatigue Detection", "Intelligent Notification Timing"],
+                        color: "from-cyan-accent to-indigo-primary"
+                      },
+                      {
+                        phase: "Phase 2 · 3–4 Weeks",
+                        title: "Impact Intelligence",
+                        desc: "Real-time visibility into community impact",
+                        items: ["Blood Shortage Heatmaps", "Lives Saved Dashboard", "Rare Blood Group Registry"],
+                        color: "from-indigo-primary to-purple-500"
+                      },
+                      {
+                        phase: "Phase 3 · 4–6 Weeks",
+                        title: "Platform Expansion",
+                        desc: "Transform Samarpan into a nationwide blood infrastructure platform",
+                        items: ["Plasma Donation Module", "Offline-First PWA", "Blood Bank API Integration"],
+                        color: "from-purple-500 to-red-500"
+                      }
+                    ].map((item, i) => (
+                      <GlassCard key={i} delay={i * 0.1} className="relative overflow-hidden">
+                        <div className={`absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br ${item.color} opacity-10 blur-3xl rounded-full`} />
+                        <div className="text-[10px] font-black tracking-widest uppercase text-white/30 mb-4">{item.phase}</div>
+                        <h4 className="text-xl font-sora font-bold mb-4">{item.title}</h4>
+                        <p className="text-white/40 text-sm leading-relaxed mb-6">{item.desc}</p>
+                        <div className="space-y-2">
+                          {item.items.map((tag, j) => (
+                            <div key={j} className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/40">
+                              <div className={`w-2 h-2 rounded-full bg-gradient-to-br ${item.color}`} />
+                              {tag}
+                            </div>
+                          ))}
+                        </div>
+                      </GlassCard>
+                    ))}
+                  </div>
                 </div>
                 {/* Timeline */}
                 <h3 className="text-lg sm:text-xl font-sora font-black mb-12 uppercase tracking-widest">Build Phases</h3>
@@ -1197,6 +1413,48 @@ const App = () => {
                     </tbody>
                   </table>
                 </div>
+              </div>
+
+              {/* Long-Term Vision */}
+              <div className="mb-20 sm:mb-40">
+                <div className="flex items-center gap-4 mb-12">
+                  <span className="text-[10px] font-black tracking-[0.4em] text-white/20 uppercase">Long-Term Vision</span>
+                  <div className="h-[1px] flex-grow bg-white/10" />
+                </div>
+                <h2 className="text-2xl sm:text-5xl font-sora font-black tracking-tighter mb-4 uppercase leading-[1.1]">
+                  India's intelligent <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-accent to-indigo-primary">blood infrastructure</span>
+                </h2>
+                <p className="text-white/40 max-w-2xl text-base sm:text-lg font-light leading-relaxed mb-12">
+                  Samarpan is not being built as another blood donation application. The vision is to become India's intelligent blood coordination infrastructure.
+                </p>
+                <GlassCard className="p-8 sm:p-12 relative overflow-hidden">
+                  <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-br from-cyan-accent to-indigo-primary opacity-10 blur-3xl rounded-full" />
+                  <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-gradient-to-br from-indigo-primary to-red-500 opacity-10 blur-3xl rounded-full" />
+                  <div className="relative z-10">
+                    <div className="text-lg sm:text-xl font-light text-white/60 mb-8 leading-relaxed">
+                      A future where:
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {[
+                        "Patients can find blood within minutes",
+                        "Hospitals can view donor availability instantly",
+                        "NGOs can coordinate at scale",
+                        "Blood shortages can be predicted before they occur",
+                        "AI optimizes donor engagement and emergency response"
+                      ].map((item, i) => (
+                        <div key={i} className="flex items-center gap-4">
+                          <div className="w-3 h-3 rounded-full bg-gradient-to-br from-cyan-accent to-indigo-primary flex-shrink-0" />
+                          <span className="text-white/70 font-sora">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-10 pt-8 border-t border-white/10">
+                      <p className="text-white/50 text-base leading-relaxed">
+                        When someone needs blood, Samarpan should already know: who can donate, who is eligible, who is nearby, who is most likely to respond, which blood bank has inventory, and what alternative options exist — before the first phone call is made.
+                      </p>
+                    </div>
+                  </div>
+                </GlassCard>
               </div>
 
               {/* Who We're Looking For */}
